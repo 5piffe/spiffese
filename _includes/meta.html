@@ -1,0 +1,12 @@
+<!-- Include Meta Tags Here -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1 user-scalable=no, shrink-to-fit=no">
+<meta content='#000000' name='theme-color'/>
+<meta name="keywords" content="{{site.site-keywords}}">
+<title>{{site.title}}{% if page.title %} | {{page.title}}{% endif %}</title>
+
+<!-- Search Engine -->
+<meta name="description" content="{% unless page.layout == 'post' %}{{site.description}}{% else %}{{page.description}}{% endunless %}">
+<meta name="image" content="{% unless page.layout == 'post' %}{{site.site-image}}{% else %}{{page.post-image}}{% endunless %}">

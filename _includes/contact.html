@@ -1,0 +1,25 @@
+<section class="hero is-fullheight has-text-centered" id="contact">
+    <div class="hero-body">
+        <div class="container">
+
+            <hr>
+
+            <div class="buttons-container has-text-centered">
+                {% unless site.email == %}
+                <a id="contact-button" href="mailto:{{site.email}}"
+                    class="button is-rounded is-uppercase has-text-weight-normal is-black is-outlined has-text-weight-semibold column is-two-fifths"
+                    target="_blank">
+                    <i class="fas fa-envelope"></i>spiffe84@gmail.com
+                </a>
+                {% endunless %}
+                {% unless site.linkedin_username ==  %}
+                <a id="linkedin-button" href="http://www.linkedin.com/in/{{site.linkedin_username}}" 
+                    class="button is-rounded is-uppercase has-text-weight-normal is-black is-outlined has-text-weight-semibold column is-two-fifths"
+                    target="_blank">
+                    <i class="fab fa-linkedin"></i>Richard Nordström
+                </a>
+                {% endunless %}
+            </div>
+        </div>
+    </div>
+</section>

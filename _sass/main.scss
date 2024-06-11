@@ -1,0 +1,262 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css');
+
+
+html,
+body {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth !important;
+    transition: all 0.25s ease;
+    background-color: #c2cbd8;
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 0.5vmax !important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #c2cbd8 !important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #232a38 !important;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: black !important;
+}
+
+::placeholder {
+    font-family: 'Poppins', sans-serif;
+}
+
+#navbar {
+    .navbar-burger {
+        span:nth-child(2) {
+            left: calc(50%);
+            width: 8px;
+        }
+    }
+}
+
+.is-active {
+    font-weight: bold;
+}
+
+.columns {
+    .button {
+        margin: 0.5rem !important;
+    }
+}
+
+hr {
+    margin: 1rem auto;
+    height: 1px;
+}
+
+.column {
+    margin: auto 0.5rem;
+    padding: 0.5rem;
+}
+
+.searchResult {
+    a {
+        .title {
+            text-decoration: underline;
+        }
+    }
+}
+
+/* Sections styles */
+
+/* ALARA */
+.alara-section {
+    background-color: #e0d6ba; /* Adjust as needed */
+    color: #000000; /* Adjust as needed */
+    font-size: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    /* Background image */
+    background-image: url('/assets/images/fd/alara/AlaraPrimeLogo_Symbol_NEG_opaque2.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.alara-section-headline {
+    font-size: 24px;
+    margin-top: 10px; /* Optional: Add some spacing if needed */
+    margin-bottom: 10px; /* Optional: Add some spacing if needed */
+}
+
+
+
+
+
+
+
+.alara-section-logos-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.alara-section-logos {
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: center;
+    margin-top: 64px;
+}
+
+.alara-section-logos img {
+    max-height: 150px; /* Adjust the value to make the images smaller */
+    margin: 0 20px; /* Add some spacing between the images */
+}
+
+// Mediaquery for narrow window
+@media (max-width: 600px) { /* Adjust the max-width value as needed */
+    .alara-section-logos {
+        flex-direction: column; /* Stack images vertically */
+    }
+
+    .alara-section-logos img {
+        margin: 10px 0; /* Add some vertical margin for spacing */
+    }
+}
+
+
+
+
+
+
+.header-logo {
+    position: relative;
+    margin-bottom: 20px; /* Adjust the margin as needed */
+    text-align: center;
+}
+
+.alara-section-text {
+    color: #000000;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 12px; /* Adjust this value as needed */
+}
+
+.screenshot-row {
+    margin-top: 10px; /* Adjust as needed to reduce the gap */
+    margin-bottom: 0px; /* Ensure no bottom margin */
+    padding: 0; /* Remove any padding */
+}
+
+.screenshot-row .column {
+    padding: 0 5px; /* Reduce horizontal padding between columns */
+}
+
+.screenshot {
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease-in-out;
+}
+
+.screenshot:hover {
+    transform: scale(1.05); /* Optional: Add a hover effect */
+}
+
+/* ABOUT */
+.image-texts{
+    font-size: 14px;
+    padding-top: 12px;
+    font-style: italic;
+}
+
+
+
+
+
+.about-image-container {
+   // display: flex;
+    justify-content: center;
+   // align-items: center;
+    max-width: 100%; /* Set a maximum width for the container */
+    margin-top: 0px;
+}
+
+.about-image-container img {
+   // max-width: 20%;
+    //max-height: fit-content;
+    margin: 38px; /* Add some margin between the images */
+    align-items: baseline;
+}
+
+
+
+
+
+
+
+
+
+.about-section {
+    background-color: #c2cbd8;
+    color: #000000;
+    font-size: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.additional-text {
+    font-size: 18px;
+    margin-top: 5px; /* Adjust the margin as needed */
+}
+
+.profile-image {
+    width: 150px; /* Set the desired width */
+    height: 150px; /* Set the desired height */
+    object-fit: cover; /* Ensures the image covers the specified dimensions without distortion */
+    border-radius: 50%; /* Ensures the image is always circular */
+}
+
+/* Ensure no parent element overrides the image dimensions */
+#about .image {
+    max-width: none; /* Remove the max-width restriction */
+    width: 350px; /* Ensure the container is the same size as the image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#about .image img {
+    border: 0.25rem dotted black;
+}
+
+.custom-hr {
+    border: none; /* Remove the default border */
+    height: 1px; /* Set the desired thickness */
+    background-color: black; /* Change the color to black */
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+/* CONTACT */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
