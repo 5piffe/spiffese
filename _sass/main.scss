@@ -8,7 +8,7 @@ body {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth !important;
     transition: all 0.25s ease;
-    background-color: #c2cbd8;
+    background-color: #d1dbe9;
 }
 
 
@@ -20,12 +20,12 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #c2cbd8 !important;
+    background: white !important;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #232a38 !important;
+    background: #363636 !important;
 }
 
 /* Handle on hover */
@@ -207,7 +207,7 @@ hr {
 
 
 .about-section {
-    background-color: #c2cbd8;
+    background-color: #d1dbe9;
     color: #000000;
     font-size: 24px;
 
