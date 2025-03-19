@@ -1,4 +1,4 @@
-// Typewriter effect thing
+// Typewriter effect for subtitle
 document.addEventListener("DOMContentLoaded", function() 
 {
     const subtitle = document.getElementById("subtitle");
@@ -11,15 +11,38 @@ document.addEventListener("DOMContentLoaded", function()
         {
             subtitle.innerHTML += text[index];
             index++;
-            setTimeout(typeEffect, 12); // Typespeed
+            setTimeout(typeEffect, 12);
         }
     }
-
     typeEffect();
 });
 
+// Mail contact copy msg
+document.addEventListener("DOMContentLoaded", function() {
+    const emailLink = document.getElementById("email-link");
+    const email = "spiffe84@gmail.com";
+    const copyMessage = document.getElementById("copy-message");
+
+    emailLink.addEventListener("click", function(event) {
+        event.preventDefault(); // don't open outlook and stuff
+
+        navigator.clipboard.writeText(email).then(function() {
+            copyMessage.style.display = "block";
+            copyMessage.style.opacity = 1;
+
+            setTimeout(function() {
+                copyMessage.style.opacity = 0;
+                setTimeout(function() {
+                    copyMessage.style.display = "none";
+                }, 500);
+            }, 1500); // Visible time
+        }).catch(function(err) {
+            console.error("copy failed: ", err);
+        });
+    });
+});
+
 // Timeline tree thing
-// Func for adding timline job description things
 function addJobTitle(stemWrapper, dateText, companyName, companyLink, jobTitle, skills, games) {
     const date = document.createElement("div");
     date.classList.add("date");
@@ -29,7 +52,6 @@ function addJobTitle(stemWrapper, dateText, companyName, companyLink, jobTitle, 
     const writing = document.createElement("div");
     writing.classList.add("writing");
 
-    // Create company name (only clickable if valid link)
     let companyNameElement;
     if (companyLink && companyLink !== "#") {
         companyNameElement = document.createElement("a");
@@ -55,8 +77,7 @@ function addJobTitle(stemWrapper, dateText, companyName, companyLink, jobTitle, 
     skillsElement.innerHTML = skills.map(skill => `<br>${skill}`).join("");
 
     writing.appendChild(jobTitleElement);
-    writing.appendChild(skillsElement);
-
+    
     if (games && games.length > 0) {
         const gameContainer = document.createElement("div");
         games.forEach(game => {
@@ -70,6 +91,7 @@ function addJobTitle(stemWrapper, dateText, companyName, companyLink, jobTitle, 
         });
         writing.appendChild(gameContainer);
     }
+writing.appendChild(skillsElement);
 
     stemWrapper.appendChild(writing);
 }

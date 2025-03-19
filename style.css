@@ -37,6 +37,39 @@ h1 {
     text-decoration: underline;
 }
 
+#contact {
+    margin-top: 3px;
+    font-size: 16px;
+    text-align: left;
+    margin-left: -248px;
+}
+
+#contact a {
+    text-decoration: none;
+    color: #E4DDAA;
+    display: flex;
+    align-items: center;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
+.email-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 3px;
+    transform: translateY(-1px);
+}
+
+
+#copy-message {
+    display: none;
+    position: fixed;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
 a {
     text-decoration: none;
 }
@@ -76,7 +109,7 @@ a:hover {
     font-family: Arial, sans-serif;
     color: #D7CC84;
     position: absolute;
-    top: 4px;
+    top: 3px;
     left: -260px;
     width: 250px;
     word-wrap: break-word;
@@ -116,7 +149,7 @@ a:hover {
 
 .job-title {
     font-size: 16px;
-    color: #D7CC84;
+    color: #E4DDAA;
     margin-top: 2px;
 }
 
@@ -129,7 +162,7 @@ a:hover {
 
 .game-link {
     font-size: 14px;
-    color: #D7CC84;
+    color: #E4DDAA;
     margin-top: 4px;
     text-decoration: none;
 }
