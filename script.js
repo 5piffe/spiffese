@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function() 
 {
     const subtitle = document.getElementById("subtitle");
-    const text = "Game Developer | Audio Wizard";
+    const text = "Game Developer ~ Audio Wizard";
     let index = 0;
 
     function typeEffect() 
@@ -99,12 +99,12 @@ writing.appendChild(skillsElement);
 // Draw timeline
 document.addEventListener("DOMContentLoaded", function () {
     const treeContainer = document.getElementById("tree-container");
-    const numLines = 17;
+    const numLines = 32;
 
-    let wl = 1;
-    let fd = 4;
-    let fg = 9;
-    let sae = 13;
+    let wl = 2;
+    let fd = 8;
+    let fg = 17;
+    let sae = 26;
     let usedLines = [wl, fd, fg, sae];
     
     // Draw lines
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Fade tree lines
         setTimeout(function () {
             stem.style.opacity = 1;
-        }, 50 * i);
+        }, 30 * i);
 
         // Fade text
         if (usedLines.includes(i)) {
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const writing = stemWrapper.querySelector(".writing");
                 if (date) date.style.opacity = 1;
                 if (writing) writing.style.opacity = 1;
-            }, 100 * i);
+            }, 40 * i);
         }
     }
 });

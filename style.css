@@ -80,11 +80,10 @@ a:hover {
 
 #tree-container {
     position: relative;
-    padding-left: 40px;
     display: flex;
     flex-direction: column; 
     align-items: center;
-    margin-top: 64px;
+    margin-top: 32px;
 }
 
 .tree-stem-wrapper {
@@ -97,8 +96,8 @@ a:hover {
 
 .tree-stem {
     position: relative;
-    width: 2px; 
-    height: 50px; 
+    width: 2px;
+    height: 25px; 
     background-color: #E4DDAA;
     opacity: 0;
     transition: opacity 0.5s ease-in;
