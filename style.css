@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    color: #E4DDAA;
+    padding: 0;
+    background: #171508; /* Fallback bg col */
+    background-image: linear-gradient(to bottom,
+                        rgba(23, 21, 8, 0.8) 50%,
+                        rgba(23, 21, 8, 1) 75%,
+                        #171508), 
+                        url('images/bg_spiff.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+header {
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 6rem;
+    margin-bottom: 0px;
+}
+
+#subtitle {
+    font-size: 1.45rem;
+    margin-top: -16px;
+    margin-bottom: 0px;
+    text-decoration:hsl(from color h s l);
+    text-decoration: underline;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#tree-container {
+    position: relative;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin-top: 64px;
+}
+
+.tree-stem-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start;
+    margin-bottom: 0;
+} 
+
+.tree-stem {
+    position: relative;
+    width: 2px; 
+    height: 50px; 
+    background-color: #E4DDAA;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.date {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #D7CC84;
+    position: absolute;
+    top: 4px;
+    left: -260px;
+    width: 250px;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: right;
+    font-weight:lighter;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.writing {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #D7CC84;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    width: 250px;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: left;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.company-name {
+    font-size: 20px;
+    color: #E4DDAA;
+    font-weight: bold;
+}
+
+/* On hover för company name if no link */
+.company-name:hover {
+    color: #E4DDAA;
+    text-decoration: underline;
+}
+
+.job-title {
+    font-size: 16px;
+    color: #D7CC84;
+    margin-top: 2px;
+}
+
+.skills {
+    color: #D7CC84;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: -6px;
+}
+
+.game-link {
+    font-size: 14px;
+    color: #D7CC84;
+    margin-top: 4px;
+    text-decoration: none;
+}
+
+.game-link:hover {
+    text-decoration: underline;
+}
