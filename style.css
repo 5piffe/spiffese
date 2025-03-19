@@ -169,3 +169,23 @@ a:hover {
 .game-link:hover {
     text-decoration: underline;
 }
+
+/* Squirrels :) */
+#squirrel-container {
+    position: fixed;
+    bottom: 100px;  /* Adjust starting point */
+    left: 100px;    /* Adjust starting position */
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+#squirrel {
+    image-rendering: pixelated;/* Prevents the image from being blurred */
+    width: 50px;  /* Adjust size as needed */
+    height: 50px;
+    background-image: url('images/squirrel/squirrel_right.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute; /* Make sure the squirrel is positioned inside the container */
+    top: 250; /* Starting vertical position */
+    left: 0; /* Starting horizontal position */
+}
