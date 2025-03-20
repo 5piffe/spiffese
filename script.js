@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (usedLines.includes(i)) {
             if (i === wl) {
                 addJobTitle(stemWrapper,
-                    "2024 - 20xx",
+                    "2024 – 20xx",
                     "Walker Labs",
                     "https://www.walkerlabs.com",
                     "Audio Software Engineer",
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (i === fd) {
                 addJobTitle(stemWrapper,
-                    "2021 - 2024",
+                    "2021 – 2024",
                     "Fall Damage",
                     "#",
                     "Audio Programmer",
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (i === fg) {
                 addJobTitle(stemWrapper,
-                    "2018 - 2021",
+                    "2018 – 2021",
                     "(EDU) Futuregames",
                     "https://futuregames.se/",
                     "Game Programmer",
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (i === sae) {
                 addJobTitle(stemWrapper,
-                    "2009 - 2011",
+                    "2009 – 2011",
                     "(EDU) SAE",
                     "https://www.sae.org/",
                     "Audio Production Program",
