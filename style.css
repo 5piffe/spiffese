@@ -4,7 +4,7 @@ body {
     margin: 0;
     color: #E4DDAA;
     padding: 0;
-    background: #171508; /* Fallback bg col */
+    background: #171508;
     background-image: linear-gradient(to bottom,
                         rgba(23, 21, 8, 0.8) 50%,
                         rgba(23, 21, 8, 1) 75%,
@@ -170,22 +170,22 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Squirrels :) */
+/* Squirrels */
 #squirrel-container {
     position: fixed;
-    bottom: 100px;  /* Adjust starting point */
-    left: 100px;    /* Adjust starting position */
-    z-index: 1000; /* Ensure it's above other elements */
+    bottom: 100px;
+    left: 100px;
+    z-index: 1000;
 }
 
 #squirrel {
-    image-rendering: pixelated;/* Prevents the image from being blurred */
-    width: 50px;  /* Adjust size as needed */
+    image-rendering: pixelated;
+    width: 50px;
     height: 50px;
     background-image: url('images/squirrel/squirrel_right.png');
     background-size: contain;
     background-repeat: no-repeat;
-    position: absolute; /* Make sure the squirrel is positioned inside the container */
-    top: 250; /* Starting vertical position */
-    left: 0; /* Starting horizontal position */
+    position: absolute;
+    top: 250;
+    left: 0;
 }
