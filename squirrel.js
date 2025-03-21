@@ -72,4 +72,4 @@ function handleKeyUp(event) {
 
 document.addEventListener("keydown", handleKeyDown);
 document.addEventListener("keyup", handleKeyUp);
-interval = setInterval(moveSquirrel, 16);
+interval = setInterval(moveSquirrel, 16); //~60fps

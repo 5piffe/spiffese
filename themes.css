@@ -1,0 +1,43 @@
+.winter {
+  --bg-color: #2C4F7C;
+  --shade-color: #AFC2E6;
+  --text-color: #D1DFF1;
+  
+  --bg-col-gradientTop: rgba(44, 79, 124, 0.5);
+  --bg-col-gradientBottom: rgba(44, 79, 124, 1);
+  
+  --email-icon: url('images/png');
+}
+
+.spring {
+  --bg-color: #171508;
+  --shade-color: #D7CC84;
+  --text-color: #E4DDAA;
+
+  --bg-col-gradientTop: rgba(23, 21, 8, 0.5);
+  --bg-col-gradientBottom: rgba(23, 21, 8, 1);
+
+  --email-icon: url('images/letter_16_spring.png');
+}
+
+.summer {
+  --bg-color: #0A1B0E;
+  --shade-color: #ACE1A7;
+  --text-color: #CCEDC7;
+
+  --bg-col-gradientTop: rgba(10, 27, 14, 0.5);
+  --bg-col-gradientBottom: rgba(10, 27, 14, 1);
+  
+  --email-icon: url('images/letter_16_summer.png');
+}
+
+.autumn {
+  --bg-color: #411817;
+  --shade-color: #DA9494;
+  --text-color: #F1B1B1;
+
+  --bg-col-gradientTop: rgba(65, 24, 23, 0.5);
+  --bg-col-gradientBottom: rgba(65, 24, 23, 1);
+
+  --email-icon: url('images/letter_16_autumn.png');
+}
