@@ -177,8 +177,8 @@ a:hover {
 /* Squirrels */
 #squirrel-container {
     position: fixed;
-    bottom: 100px;
-    left: 100px;
+    bottom: 50px;
+    left: 5px;
     z-index: 1000;
 }
 

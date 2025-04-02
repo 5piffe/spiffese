@@ -32,8 +32,8 @@ function checkBorder() {
   if (squirrelPosition < 0) {
     squirrelPosition = 0;
     return true;
-  } else if ((squirrelPosition + squirrel.offsetWidth) > (window.innerWidth - 200)) {
-    squirrelPosition = (window.innerWidth - 200) - squirrel.offsetWidth;
+  } else if ((squirrelPosition + squirrel.offsetWidth) > (window.innerWidth - 33)) {
+    squirrelPosition = (window.innerWidth - 33) - squirrel.offsetWidth;
     return true;
   }
   return false;
