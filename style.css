@@ -177,18 +177,17 @@ a:hover {
 /* Squirrels */
 #squirrel-container {
     position: fixed;
-    bottom: 60px;
-    left: 12px;
+    bottom: 0px;
+    left: 0px;
     z-index: 1000;
 }
 
 #squirrel {
     image-rendering: pixelated;
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    top: 250;
     left: 0;
 }

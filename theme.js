@@ -25,8 +25,6 @@ function autoDetectSeason() {
 // Let's keep this here, since these animations could be season and/or other theme specific
 const squirrelAnimations = {
   base: {
-    // UP (jump?)
-    // DOWN (fall?)
     RUN_LEFT: "animations/squirrel/base/squirrel_runleft_base.gif",
     RUN_RIGHT: "animations/squirrel/base/squirrel_runright_base.gif",
 
@@ -34,7 +32,14 @@ const squirrelAnimations = {
     BLOCKED_RIGHT: "animations/squirrel/base/squirrel_blockedright_base.gif",
 
     IDLE_LEFT: "animations/squirrel/base/squirrel_idleleft_base.gif",
-    IDLE_RIGHT: "animations/squirrel/base/squirrel_idleright_base.gif"
+    IDLE_RIGHT: "animations/squirrel/base/squirrel_idleright_base.gif",
+
+    JUMP_LEFT: "animations/squirrel/base/squirrel_jumpleft_base.gif",
+    JUMP_RIGHT: "animations/squirrel/base/squirrel_jumpright_base.gif",
+
+    FALL_LEFT: "animations/squirrel/base/squirrel_fallleft_base.gif",
+    FALL_RIGHT: "animations/squirrel/base/squirrel_fallright_base.gif",
+
   },
   spring: {
     RUN_LEFT: "animations/squirrel/spring/squirrel_runleft_spring.gif",
@@ -44,7 +49,14 @@ const squirrelAnimations = {
     BLOCKED_RIGHT: "animations/squirrel/spring/squirrel_blockedright_spring.gif",
 
     IDLE_LEFT: "animations/squirrel/spring/squirrel_idleleft_spring.gif",
-    IDLE_RIGHT: "animations/squirrel/spring/squirrel_idleright_spring.gif"
+    IDLE_RIGHT: "animations/squirrel/spring/squirrel_idleright_spring.gif",
+
+    JUMP_LEFT: "animations/squirrel/spring/squirrel_jumpleft_spring.gif",
+    JUMP_RIGHT: "animations/squirrel/spring/squirrel_jumpright_spring.gif",
+
+    FALL_LEFT: "animations/squirrel/spring/squirrel_fallleft_spring.gif",
+    FALL_RIGHT: "animations/squirrel/spring/squirrel_fallright_spring.gif",
+
   },
   summer: {
     RUN_LEFT: "animations/squirrel/summer/squirrel_runleft_summer.gif",
@@ -54,7 +66,13 @@ const squirrelAnimations = {
     BLOCKED_RIGHT: "animations/squirrel/summer/squirrel_blockedright_summer.gif",
 
     IDLE_LEFT: "animations/squirrel/summer/squirrel_idleleft_summer.gif",
-    IDLE_RIGHT: "animations/squirrel/summer/squirrel_idleright_summer.gif"
+    IDLE_RIGHT: "animations/squirrel/summer/squirrel_idleright_summer.gif",
+
+    JUMP_LEFT: "animations/squirrel/summer/squirrel_jumpleft_summer.gif",
+    JUMP_RIGHT: "animations/squirrel/summer/squirrel_jumpright_summer.gif",
+
+    FALL_LEFT: "animations/squirrel/summer/squirrel_fallleft_summer.gif",
+    FALL_RIGHT: "animations/squirrel/summer/squirrel_fallright_summer.gif",
   },
 
   // Add other season anims...
