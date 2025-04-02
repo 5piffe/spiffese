@@ -46,6 +46,17 @@ const squirrelAnimations = {
     IDLE_LEFT: "animations/squirrel/spring/squirrel_idleleft_spring.gif",
     IDLE_RIGHT: "animations/squirrel/spring/squirrel_idleright_spring.gif"
   },
+  summer: {
+    RUN_LEFT: "animations/squirrel/summer/squirrel_runleft_summer.gif",
+    RUN_RIGHT: "animations/squirrel/summer/squirrel_runright_summer.gif",
+
+    BLOCKED_LEFT: "animations/squirrel/summer/squirrel_blockedleft_summer.gif",
+    BLOCKED_RIGHT: "animations/squirrel/summer/squirrel_blockedright_summer.gif",
+
+    IDLE_LEFT: "animations/squirrel/summer/squirrel_idleleft_summer.gif",
+    IDLE_RIGHT: "animations/squirrel/summer/squirrel_idleright_summer.gif"
+  },
+
   // Add other season anims...
 }
 
