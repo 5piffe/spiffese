@@ -11,35 +11,32 @@ let interval;
 function updateSquirrelAnimation() {
   if (GetKey(EDirection.RIGHT)) {
     facingRight = true;
-    if (season === 'spring') { // Just to test season for now
-      squirrel.style.backgroundImage = "url('animations/squirrel/spring/squirrel_runright_spring.gif')";
-    } else {
-      squirrel.style.backgroundImage = "url('animations/squirrel/base/squirrel_runright_base.gif')";
-    }
-  }
-  else if (GetKey(EDirection.LEFT)) {
+    squirrel.style.backgroundImage = !checkBorder()
+      ? `url('${GetSquirrelAnimation("RUN_RIGHT")}')`
+      : `url('${GetSquirrelAnimation("BLOCKED_RIGHT")}')`;
+  } else if (GetKey(EDirection.LEFT)) {
     facingRight = false;
-    if (season === 'spring') {
-      squirrel.style.backgroundImage = "url('animations/squirrel/spring/squirrel_runleft_spring.gif')";
-    } else {
-      squirrel.style.backgroundImage = "url('animations/squirrel/base/squirrel_runleft_base.gif";
-    }
-
-  } else { // Not moving ...
+    squirrel.style.backgroundImage = !checkBorder()
+      ? `url('${GetSquirrelAnimation("RUN_LEFT")}')`
+      : `url('${GetSquirrelAnimation("BLOCKED_LEFT")}')`; // Press edge animation
+  } else { // Not trying to move
     if (facingRight) {
-      if (season === 'spring') {
-        squirrel.style.backgroundImage = "url('animations/squirrel/spring/squirrel_idleright_spring.gif')";
-      } else {
-        squirrel.style.backgroundImage = "url('animations/squirrel/base/squirrel_idleright_base.gif')";
-      }
+      squirrel.style.backgroundImage = `url('${GetSquirrelAnimation("IDLE_RIGHT")}')`;
     } else {
-      if (season === 'spring') {
-        squirrel.style.backgroundImage = "url('animations/squirrel/spring/squirrel_idleleft_spring.gif')";
-      } else {
-        squirrel.style.backgroundImage = "url('animations/squirrel/base/squirrel_idleleft_base.gif')";
-      }
+      squirrel.style.backgroundImage = `url('${GetSquirrelAnimation("IDLE_LEFT")}')`;
     }
   }
+}
+
+function checkBorder() {
+  if (squirrelPosition < 0) {
+    squirrelPosition = 0;
+    return true;
+  } else if ((squirrelPosition + squirrel.offsetWidth) > (window.innerWidth - 200)) {
+    squirrelPosition = (window.innerWidth - 200) - squirrel.offsetWidth;
+    return true;
+  }
+  return false;
 }
 
 function moveSquirrel() {
@@ -56,6 +53,7 @@ function moveSquirrel() {
   squirrelPosition += squirrelSpeed * (facingRight ? 1 : -1);
   squirrel.style.left = squirrelPosition + "px";
   updateSquirrelAnimation();
+  checkBorder();
 }
 
 interval = setInterval(moveSquirrel, 16);
