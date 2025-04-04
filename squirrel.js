@@ -1,5 +1,10 @@
 const squirrel = document.getElementById("squirrel");
+let season = localStorage.getItem('season');
 
+let lastFrameTime = performance.now();
+let frameTime = 16.67;
+
+// Move
 let facingRight = true;
 let squirrelPosition = 0;
 let squirrelSpeed = 0;
@@ -7,16 +12,18 @@ const acceleration = 0.2;
 const maxSpeed = 8;
 const friction = 0.3;
 
+// Jump
 let isJumping = false;
-let squirrelYvalue = 0;
-let jumpVelocity = 0;
-const gravity = 0.6;
-const jumpStrength = 16;
-const maxJumpHeight = 250;
-const minGroundLevel = 0;
-
-let season = localStorage.getItem('season');
-let interval;
+let jumpDelta = 0;
+let currentJumpHeight = 0;
+const gravity = 1;
+const jumpStrength = 30;
+const fallTerminalVelocity = 20;
+const glideTerminalVelocity = 3;
+const glideBrakeFactor = 0.6;
+const jumpBrakeFactor = 0.5;
+const minJumpAbortDelta = 10;
+const groundLevel = 0;
 
 function updateSquirrelAnimation() {
   if (!isJumping) {
@@ -30,19 +37,15 @@ function updateSquirrelAnimation() {
       squirrel.style.backgroundImage = !checkBorder()
         ? `url('${GetSquirrelAnimation("RUN_LEFT")}')`
         : `url('${GetSquirrelAnimation("BLOCKED_LEFT")}')`;
-    } else { // Not moving or trying to move
-      if (facingRight) {
-        squirrel.style.backgroundImage = `url('${GetSquirrelAnimation("IDLE_RIGHT")}')`;
-      } else {
-        squirrel.style.backgroundImage = `url('${GetSquirrelAnimation("IDLE_LEFT")}')`;
-      }
+    } else {
+      squirrel.style.backgroundImage = facingRight
+        ? `url('${GetSquirrelAnimation("IDLE_RIGHT")}')`
+        : `url('${GetSquirrelAnimation("IDLE_LEFT")}')`;
     }
   } else {
-    if (facingRight) {
-      squirrel.style.backgroundImage = `url('${GetSquirrelAnimation((jumpVelocity > 0) ? "JUMP_RIGHT" : "FALL_RIGHT")}')`;
-    } else {
-      squirrel.style.backgroundImage = `url('${GetSquirrelAnimation((jumpVelocity > 0) ? "JUMP_LEFT" : "FALL_LEFT")}')`;
-    }
+    squirrel.style.backgroundImage = facingRight
+      ? `url('${GetSquirrelAnimation((jumpDelta > 0) ? "JUMP_RIGHT" : "FALL_RIGHT")}')`
+      : `url('${GetSquirrelAnimation((jumpDelta > 0) ? "JUMP_LEFT" : "FALL_LEFT")}')`;
   }
 }
 
@@ -57,41 +60,57 @@ function checkBorder() {
   return false;
 }
 
-function moveSquirrel() {
+function moveSquirrel(time) {
+  let deltaTime = (time - lastFrameTime) / 16.67;
+  lastFrameTime = time;
+
   if (GetKey(EDirection.RIGHT)) {
     squirrelSpeed = Math.min(squirrelSpeed + acceleration, maxSpeed);
     facingRight = true;
   } else if (GetKey(EDirection.LEFT)) {
     squirrelSpeed = Math.min(squirrelSpeed + acceleration, maxSpeed);
     facingRight = false;
-  } else {
+  } else { // Strop-time
     squirrelSpeed = Math.max(0, squirrelSpeed - friction);
   }
 
-  // jump
+  // Init jump
   if (GetKey(EDirection.UP) && !isJumping) {
-    isJumping = (squirrelYvalue <= maxJumpHeight);
-    jumpVelocity = jumpStrength;
-  } else if (!GetKey(EDirection.UP)) {
-    jumpVelocity -= gravity;
+    isJumping = true;
+    jumpDelta = jumpStrength;
   }
 
+  // In Air
   if (isJumping) {
-    squirrelYvalue += jumpVelocity;
-    jumpVelocity -= gravity;
+    if (GetKey(EDirection.UP) && jumpDelta < 0) {
+      if (jumpDelta < -glideTerminalVelocity) {
+        jumpDelta += gravity * glideBrakeFactor * deltaTime;
+      } else {
+        jumpDelta -= gravity * deltaTime;
+      }
+    } else {
+      jumpDelta -= gravity * deltaTime;
+      jumpDelta = Math.max(jumpDelta, -fallTerminalVelocity);
+      if (jumpDelta > minJumpAbortDelta && !GetKey(EDirection.UP)) {
+        jumpDelta -= jumpDelta * jumpBrakeFactor * deltaTime;
+      }
+    }
+    currentJumpHeight += jumpDelta * deltaTime;
 
-    if (squirrelYvalue <= minGroundLevel) {
+    // On grounded
+    if (currentJumpHeight <= groundLevel) {
       isJumping = false;
-      squirrelYvalue = minGroundLevel;
-      jumpVelocity = 0;
+      currentJumpHeight = groundLevel;
+      jumpDelta = 0;
     }
   }
 
-  squirrelPosition += squirrelSpeed * (facingRight ? 1 : -1);
+  squirrelPosition += squirrelSpeed * (facingRight ? 1 : -1) * deltaTime;
   squirrel.style.left = squirrelPosition + "px";
-  squirrel.style.bottom = squirrelYvalue + "px";
+  squirrel.style.bottom = currentJumpHeight + "px";
   updateSquirrelAnimation();
   checkBorder();
+  requestAnimationFrame(moveSquirrel);
 }
 
-interval = setInterval(moveSquirrel, 16);
+requestAnimationFrame(moveSquirrel);
