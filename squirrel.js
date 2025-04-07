@@ -1,6 +1,5 @@
 const squirrel = document.getElementById("squirrel");
-let season = localStorage.getItem('season');
-
+//let season = localStorage.getItem('season');
 let lastFrameTime = performance.now();
 let frameTime = 16.67;
 
@@ -24,6 +23,14 @@ const glideBrakeFactor = 0.6;
 const jumpBrakeFactor = 0.5;
 const minJumpAbortDelta = 10;
 const groundLevel = 0;
+
+import { isGrounded } from "./platforming.js";
+const platformElements = Array.from(document.querySelectorAll(".platform"));
+
+// Works for static platforms atm
+function getPlatformRects() {
+  return platformElements.map(el => el.getBoundingClientRect());
+}
 
 function updateSquirrelAnimation() {
   if (!isJumping) {
@@ -60,9 +67,27 @@ function checkBorder() {
   return false;
 }
 
+// TODO: Tweaka colliderbox
+function getSquirrelColliderBox() {
+  const rect = document.getElementById("squirrel").getBoundingClientRect();
+  const paddingX = 50;
+  const paddingY = 0;
+
+  return {
+    top: rect.top + paddingY,
+    bottom: rect.bottom,
+    left: rect.left + paddingX / 2,
+    right: rect.right - paddingX / 2,
+  };
+}
+
 function moveSquirrel(time) {
-  let deltaTime = (time - lastFrameTime) / 16.67;
+  let deltaTime = (time - lastFrameTime) / frameTime;
   lastFrameTime = time;
+
+  const squirrelRect = getSquirrelColliderBox();
+  const platformRects = getPlatformRects();
+  const grounded = isGrounded(squirrelRect, platformRects);
 
   if (GetKey(EDirection.RIGHT)) {
     squirrelSpeed = Math.min(squirrelSpeed + acceleration, maxSpeed);
@@ -70,7 +95,7 @@ function moveSquirrel(time) {
   } else if (GetKey(EDirection.LEFT)) {
     squirrelSpeed = Math.min(squirrelSpeed + acceleration, maxSpeed);
     facingRight = false;
-  } else { // Strop-time
+  } else {
     squirrelSpeed = Math.max(0, squirrelSpeed - friction);
   }
 
@@ -78,6 +103,11 @@ function moveSquirrel(time) {
   if (GetKey(EDirection.UP) && !isJumping) {
     isJumping = true;
     jumpDelta = jumpStrength;
+  }
+
+  if (!isJumping && !grounded && currentJumpHeight > groundLevel) {
+    isJumping = true;
+    jumpDelta = 0; // Start falling
   }
 
   // In Air
@@ -97,10 +127,11 @@ function moveSquirrel(time) {
     }
     currentJumpHeight += jumpDelta * deltaTime;
 
-    // On grounded
-    if (currentJumpHeight <= groundLevel) {
+    if (grounded || currentJumpHeight <= groundLevel) {
       isJumping = false;
-      currentJumpHeight = groundLevel;
+      if (!grounded) {
+        currentJumpHeight = groundLevel;
+      }
       jumpDelta = 0;
     }
   }
