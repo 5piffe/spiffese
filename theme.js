@@ -75,7 +75,7 @@ const squirrelAnimations = {
     FALL_RIGHT: "animations/squirrel/summer/squirrel_fallright_summer.gif",
   },
 
-  // Add other season anims...
+  //...
 }
 
 function GetSquirrelAnimation(direction) {

@@ -88,6 +88,7 @@ a:hover {
     flex-direction: column; 
     align-items: center;
     margin-top: 32px;
+    z-index: 1;
 }
 
 .tree-stem-wrapper {
@@ -184,8 +185,8 @@ a:hover {
 
 #squirrel {
     image-rendering: pixelated;
-    width: 75px;
-    height: 75px;
+    width: 64px;
+    height: 64px;
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
@@ -194,8 +195,8 @@ a:hover {
 
 #tutorial { /* Add key-binding info gifs and stuff */
   image-rendering: pixelated;
-  width: 75px;
-  height: 75px;
+  width: 64px;
+  height: 64px;
   position: absolute;
 }
 
@@ -204,18 +205,48 @@ a:hover {
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: -1;
+/*  z-index: -1;*/
 
 }
 
+/* ======== TILES  ======== */
 .platform {
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /*border: 1px solid rgba(255, 255, 255, 0.9);*/
+  /* Style defined in tilerenderer.js */
 }
 
-.stone {
-  background-color: #1a1e2d;
+/* :: BRICKLAND :: */
+.brick_blue_topleft_corner {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/brickland/t_brick_blue_topleft_corner.gif');
+}
+.brick_blue_topleft_edge {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/brickland/t_brick_blue_topleft_edge.gif');
+}
+.brick_blue_topmid {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/brickland/t_brick_blue_topmid.gif');
+}
+.brick_blue_topmid2 {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/brickland/t_brick_blue_topmid2.gif');
+}
+.brick_blue_topright_corner {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/brickland/t_brick_blue_topright_corner.gif');
+}
+.brick_blue_topright_edge {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/brickland/t_brick_blue_topright_edge.gif');
 }
 
-.wood {
-  background-color: #2d1f17;
+/* :: WOODEN BOX STUFF :: */
+.wooden_box_vertical {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/woodenbox/t_wooden_box_vert.gif');
+}
+.wooden_box_horizontal {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/woodenbox/t_wooden_box_hor.gif');
 }
