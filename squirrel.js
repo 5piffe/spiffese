@@ -177,7 +177,7 @@ function checkBorder() {
   if (squirrelPosition < 2) {
     squirrelPosition = 2;
     return true;
-  } else if ((squirrelPosition + squirrel.fsetWidth) > (window.innerWidth - 22)) {
+  } else if ((squirrelPosition + squirrel.offsetWidth) > (window.innerWidth - 22)) {
     squirrelPosition = (window.innerWidth - 22) - squirrel.offsetWidth;
     return true;
   }

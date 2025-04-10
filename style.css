@@ -180,7 +180,7 @@ a:hover {
     position: fixed;
     bottom: 0px;
     left: 0px;
-    z-index: 1;
+    z-index: 3;
 }
 
 #squirrel {
@@ -200,14 +200,25 @@ a:hover {
   position: absolute;
 }
 
-
-#world {
+#world_walkable { 
   position: fixed;
   bottom: 0;
   left: 0;
-/*  z-index: -1;*/
-
+  z-index: 2;
 }
+#world_props_foreground {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+}
+#world_props_background {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
 
 /* ======== TILES  ======== */
 .platform {
@@ -249,4 +260,20 @@ a:hover {
 .wooden_box_horizontal {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/woodenbox/t_wooden_box_hor.gif');
+}
+
+/* :: DECORATIVE PROPS :: */
+.bottle_wine {
+  image-rendering: pixelated;
+  background-image: url('sprites/props/p_wine.gif');
+}
+
+.grass1 {
+  image-rendering: pixelated;
+  background-image: url('sprites/props/p_grass1.gif');
+}
+
+.grass2 {
+  image-rendering: pixelated;
+  background-image: url('sprites/props/p_grass2.gif');
 }
