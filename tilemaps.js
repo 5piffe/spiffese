@@ -21,7 +21,6 @@
 const tileMap_walkable = [
   ['Wv'],
   ['  '],
-  ['  '],
   ['  ', '  ', 'Wv'],
   ['  ', '  ', 'Wv', 'Wh'],
   ['  ', 'Bt', 'Bm', 'Bm', 'Br'],
@@ -31,7 +30,6 @@ const tileMap_props_foreground = [
   ['Gr'],
   ['  '],
   ['  '],
-  ['  '],
   ['  ', '  ', '  ', 'Gr'],
   ['  ', 'Gr'],
   ['  '],
@@ -39,7 +37,6 @@ const tileMap_props_foreground = [
 
 const tileMap_props_background = [
   ['Bw'],
-  ['  '],
   ['  '],
   ['  '],
   ['  '],

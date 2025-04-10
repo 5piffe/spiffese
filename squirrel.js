@@ -8,7 +8,7 @@ let squirrelPosition = 0;
 let squirrelSpeed = 0;
 const acceleration = 0.2;
 const maxSpeed = 8;
-const friction = 0.3;
+const friction = 0.4;
 let isXBlocked = false;
 
 // Jump
@@ -55,6 +55,7 @@ function getPlatformRects() {
 
 function update(time) {
   let deltaTime = (time - lastFrameTime) / frameTime;
+  deltaTime = Math.min(deltaTime, 0.8);
   lastFrameTime = time;
 
   moveSquirrel(deltaTime);
@@ -74,13 +75,13 @@ function moveSquirrel(deltaTime) {
   isXBlocked = checkXCollision(squirrelRect, platformRects, direction);
 
   if (GetKey(EDirection.RIGHT)) {
-    squirrelSpeed = Math.min(squirrelSpeed + acceleration, maxSpeed);
+    squirrelSpeed = Math.min(squirrelSpeed + acceleration * deltaTime, maxSpeed);
     facingRight = true;
   } else if (GetKey(EDirection.LEFT)) {
-    squirrelSpeed = Math.min(squirrelSpeed + acceleration, maxSpeed);
+    squirrelSpeed = Math.min(squirrelSpeed + acceleration * deltaTime, maxSpeed);
     facingRight = false;
   } else {
-    squirrelSpeed = Math.max(0, squirrelSpeed - friction);
+    squirrelSpeed = Math.max(0, squirrelSpeed - friction * deltaTime);
   }
 
   // Init jump
