@@ -1,42 +1,34 @@
-// Subtitle write-effect
-document.addEventListener("DOMContentLoaded", function() {
-  const subtitle = document.getElementById("subtitle");
-  const text = "Game Developer ~ Audio Wizard";
-  let index = 0;
 
-  function typeEffect() {
-    if (index < text.length) {
-      subtitle.innerHTML += text[index];
-      index++;
-      setTimeout(typeEffect, 12);
+document.addEventListener("DOMContentLoaded", function () {
+  const header = document.getElementById("header");
+  const subtitle = document.getElementById("subtitle");
+  const headerText = "SPIFFE";
+  const subtitleText = "Game Developer ~ Audio Wizard";
+  let headerIndex = 0;
+  let subtitleIndex = 0;
+
+  function typeHeader() {
+    if (headerIndex < headerText.length) {
+      header.innerHTML += headerText[headerIndex];
+      headerIndex++;
+      setTimeout(typeHeader, 80);
+    } else {
+      typeSubtitle();
     }
   }
-  typeEffect();
-});
 
-// Mail contact copy msg
-document.addEventListener("DOMContentLoaded", function() {
-  const emailLink = document.getElementById("email-link");
-  const email = "spiffe84@gmail.com";
-  const copyMessage = document.getElementById("copy-message");
-
-  emailLink.addEventListener("click", function(event) {
-    event.preventDefault(); // don't open outlook and stuff
-
-    navigator.clipboard.writeText(email).then(function() {
-      copyMessage.style.display = "block";
-      copyMessage.style.opacity = 1;
-
-      setTimeout(function() {
-        copyMessage.style.opacity = 0;
-        setTimeout(function() {
-          copyMessage.style.display = "none";
-        }, 500);
-      }, 1500); // Visible time
-    }).catch(function(err) {
-      console.error("copy failed: ", err);
-    });
-  });
+  function typeSubtitle() {
+    if (subtitleIndex < subtitleText.length) {
+      subtitle.innerHTML += subtitleText[subtitleIndex];
+      subtitleIndex++;
+      setTimeout(typeSubtitle, 12);
+    } else {
+      document.getElementById("contact").style.opacity = 1;
+      document.getElementById("name").style.opacity = 1;
+      startTimeline();
+    }
+  }
+  typeHeader();
 });
 
 // Timeline tree thing
@@ -94,9 +86,9 @@ function addJobTitle(stemWrapper, dateText, companyName, companyLink, jobTitle, 
 }
 
 // Draw timeline
-document.addEventListener("DOMContentLoaded", function() {
+function startTimeline() {
   const treeContainer = document.getElementById("tree-container");
-  const numLines = 32;
+  const numLines = 34;
 
   let wl = 2;
   let fd = 8;
@@ -161,8 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
           "(EDU) SAE",
           "https://www.sae.org/",
           "Audio Production Program",
-          ["Live sound engineering", "Mixing/Mastering", "DAW workflow", "Engineering", "Electronics", "Production"],
-
+          ["Live sound engineering", "Mixing/Mastering", "DAW workflow", "Engineering", "Electronics", "Production"]
         );
       }
     }
@@ -171,13 +162,13 @@ document.addEventListener("DOMContentLoaded", function() {
     treeContainer.appendChild(stemWrapper);
 
     // Fade tree lines
-    setTimeout(function() {
+    setTimeout(function () {
       stem.style.opacity = 1;
     }, 30 * i);
 
     // Fade text
     if (usedLines.includes(i)) {
-      setTimeout(function() {
+      setTimeout(function () {
         const date = stemWrapper.querySelector(".date");
         const writing = stemWrapper.querySelector(".writing");
         if (date) date.style.opacity = 1;
@@ -185,4 +176,4 @@ document.addEventListener("DOMContentLoaded", function() {
       }, 40 * i);
     }
   }
-});
+}
