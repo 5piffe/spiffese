@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   const header = document.getElementById("header");
   const subtitle = document.getElementById("subtitle");
@@ -26,9 +25,33 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("contact").style.opacity = 1;
       document.getElementById("name").style.opacity = 1;
       startTimeline();
+      loadMailCopy();
     }
   }
   typeHeader();
+
+  function loadMailCopy() {
+    const emailLink = document.getElementById("email-link");
+    const email = "spiffe84@gmail.com";
+    const copyMessage = document.getElementById("copy-message");
+
+    emailLink.addEventListener("click", function (event) {
+      event.preventDefault(); // don't fuck around with outlook  and stuff, simply copy the damn mail(!)
+      navigator.clipboard.writeText(email).then(function () {
+        copyMessage.style.display = "block";
+        copyMessage.style.opacity = 1;
+
+        setTimeout(function () {
+          copyMessage.style.opacity = 0;
+          setTimeout(function () {
+            copyMessage.style.display = "none";
+          }, 500);
+        }, 1500);
+      }).catch(function (err) {
+        console.error("Copy failed: ", err);
+      });
+    });
+  }
 });
 
 // Timeline tree thing
@@ -177,3 +200,4 @@ function startTimeline() {
     }
   }
 }
+
