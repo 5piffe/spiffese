@@ -1,14 +1,15 @@
 const squirrel = document.getElementById("squirrel");
 let lastFrameTime = performance.now();
-let frameTime = 16.67;
+let accumulatedTime = 0;
+const fixedDelta = 1 / 60;
 
 // Move
 let facingRight = true;
 let squirrelPosition = 0;
 let squirrelSpeed = 0;
-const acceleration = 0.2;
-const maxSpeed = 8;
-const friction = 0.4;
+const acceleration = 2000;
+const maxSpeed = 400;
+const friction = 3000;
 let isXBlocked = false;
 
 // Jump
@@ -16,13 +17,13 @@ let isJumping = false;
 let jumpDelta = 0;
 let currentJumpHeight = 0;
 let hasLanded = true;
-const gravity = 1;
-const jumpStrength = 20;
-const fallTerminalVelocity = 20;
-const glideTerminalVelocity = 3;
-const glideBrakeFactor = 0.5;
-const jumpBrakeFactor = 0.5;
-const minJumpAbortDelta = 10;
+const gravity = 2800;
+const jumpStrength = 900;
+const fallTerminalVelocity = 1200;
+const glideTerminalVelocity = 200;
+const glideBrakeFactor = 0.9;
+const jumpBrakeFactor = 15;
+const minJumpAbortDelta = 350;
 const groundLevel = 0;
 
 import { isGrounded, checkXCollision, isHeadBump } from "./platforming.js";
@@ -39,26 +40,32 @@ function getPlatformRects() {
       element: el,
     };
   });
+}
 
-} function getSquirrelColliderBox() {
-  const rect = document.getElementById("squirrel").getBoundingClientRect();
-  const paddingX = 50;
-  const paddingY = 40;
+function getSquirrelColliderBox(yOffset = currentJumpHeight) {
+  const rect = squirrel.getBoundingClientRect();
+  const paddingX = 20;
+  const paddingTop = 33;
+
+  const spriteTop = window.innerHeight - (yOffset + squirrel.offsetHeight);
 
   return {
-    top: rect.top + paddingY,
-    bottom: rect.bottom,
-    left: rect.left + paddingX / 2,
-    right: rect.right - paddingX / 2,
+    top: spriteTop + paddingTop,
+    bottom: spriteTop + squirrel.offsetHeight,
+    left: rect.left + paddingX,
+    right: rect.right - paddingX,
   };
 }
 
-function update(time) {
-  let deltaTime = (time - lastFrameTime) / frameTime;
-  deltaTime = Math.min(deltaTime, 0.8);
-  lastFrameTime = time;
+function update(currentTime) {
+  const deltaTime = (currentTime - lastFrameTime) / 1000;
+  lastFrameTime = currentTime;
+  accumulatedTime += deltaTime;
 
-  moveSquirrel(deltaTime);
+  while (accumulatedTime >= fixedDelta) {
+    physicsUpdate(fixedDelta);
+    accumulatedTime -= fixedDelta;
+  }
   updateSquirrelAnimation();
   checkBorder();
 
@@ -66,7 +73,11 @@ function update(time) {
 }
 requestAnimationFrame(update);
 
-function moveSquirrel(deltaTime) {
+function physicsUpdate(fixedDelta) {
+  moveSquirrel(fixedDelta);
+}
+
+function moveSquirrel(fixedDeltaTime) {
   const squirrelRect = getSquirrelColliderBox();
   const platformRects = getPlatformRects();
   const groundedPlatform = isGrounded(squirrelRect, platformRects, jumpDelta);
@@ -75,13 +86,13 @@ function moveSquirrel(deltaTime) {
   isXBlocked = checkXCollision(squirrelRect, platformRects, direction);
 
   if (GetKey(EDirection.RIGHT)) {
-    squirrelSpeed = Math.min(squirrelSpeed + acceleration * deltaTime, maxSpeed);
+    squirrelSpeed = Math.min(squirrelSpeed + acceleration * fixedDeltaTime, maxSpeed);
     facingRight = true;
   } else if (GetKey(EDirection.LEFT)) {
-    squirrelSpeed = Math.min(squirrelSpeed + acceleration * deltaTime, maxSpeed);
+    squirrelSpeed = Math.min(squirrelSpeed + acceleration * fixedDeltaTime, maxSpeed);
     facingRight = false;
   } else {
-    squirrelSpeed = Math.max(0, squirrelSpeed - friction * deltaTime);
+    squirrelSpeed = Math.max(0, squirrelSpeed - friction * fixedDeltaTime);
   }
 
   // Init jump
@@ -94,30 +105,34 @@ function moveSquirrel(deltaTime) {
   // Start fall if !jump
   if (!isJumping && !groundedPlatform && currentJumpHeight > groundLevel) {
     isJumping = true;
-    jumpDelta = 0; // Start falling
+    jumpDelta = 0;
   }
 
   // In Air
   if (isJumping) {
     if (GetKey(EDirection.UP) && jumpDelta < 0) {
       if (jumpDelta < -glideTerminalVelocity) {
-        jumpDelta += gravity * glideBrakeFactor * deltaTime;
+        jumpDelta += gravity * glideBrakeFactor * fixedDeltaTime;
       } else {
-        jumpDelta -= gravity * deltaTime;
+        jumpDelta -= gravity * fixedDeltaTime;
       }
     } else {
-      jumpDelta -= gravity * deltaTime;
+      jumpDelta -= gravity * fixedDeltaTime;
       jumpDelta = Math.max(jumpDelta, -fallTerminalVelocity);
       if (jumpDelta > minJumpAbortDelta && !GetKey(EDirection.UP)) {
-        jumpDelta -= jumpDelta * jumpBrakeFactor * deltaTime;
+        jumpDelta -= jumpDelta * jumpBrakeFactor * fixedDeltaTime;
       }
     }
 
-    currentJumpHeight += jumpDelta * deltaTime;
+    const lastBox = getSquirrelColliderBox(currentJumpHeight);
+    currentJumpHeight += jumpDelta * fixedDeltaTime;
+    const currentBox = getSquirrelColliderBox(currentJumpHeight);
 
-    // Headbump
+    const lastTop = lastBox.top;
+    const currentTop = currentBox.top;
+
     if (jumpDelta > 0) {
-      const bumpedPlatform = isHeadBump(squirrelRect, platformRects);
+      const bumpedPlatform = isHeadBump(getSquirrelColliderBox(), getPlatformRects(), lastTop, currentTop);
       if (bumpedPlatform) {
         isJumping = false;
         jumpDelta = 0;
@@ -141,9 +156,8 @@ function moveSquirrel(deltaTime) {
     }
   }
 
-
   if (!isXBlocked) {
-    squirrelPosition += squirrelSpeed * (facingRight ? 1 : -1) * deltaTime;
+    squirrelPosition += squirrelSpeed * (facingRight ? 1 : -1) * fixedDeltaTime;
     squirrel.style.left = squirrelPosition + "px";
 
   }

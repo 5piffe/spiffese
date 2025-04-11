@@ -1,6 +1,6 @@
 export function isGrounded(squirrelRect, platforms, jumpDelta) {
-  const pxThresholdY = 15;
-  const pxThresholdX = 5;
+  const pxThresholdY = 20;//15;
+  const pxThresholdX = 10;
 
   for (let platform of platforms) {
     const overTop =
@@ -46,17 +46,17 @@ export function checkXCollision(squirrelRect, platforms, direction) {
   }
 }
 
-export function isHeadBump(squirrelRect, platforms, verticalTolerance = 10, horizontalAllowance = 5) {
+export function isHeadBump(squirrelRect, platforms, lastY, currentY) {
+  const toleranceX = 8;
+
   for (let platform of platforms) {
     const xCol =
-      squirrelRect.right - horizontalAllowance > platform.left &&
-      squirrelRect.left + horizontalAllowance < platform.right;
+      squirrelRect.right - toleranceX > platform.left &&
+      squirrelRect.left + toleranceX < platform.right;
+    const crossedTop =
+      lastY >= platform.bottom && currentY <= platform.bottom;
 
-    const yUpCol =
-      squirrelRect.top >= platform.bottom &&
-      squirrelRect.top - platform.bottom <= verticalTolerance;
-
-    if (xCol && yUpCol) {
+    if (xCol && crossedTop) {
       return platform;
     }
   }
