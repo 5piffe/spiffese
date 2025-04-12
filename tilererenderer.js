@@ -1,87 +1,72 @@
 const container_walkable = document.getElementById("world_walkable");
-const container_props_foreground = document.getElementById("world_props_foreground");
-const container_prope_background = document.getElementById("world_props_background");
-
 const sourceTileSize = 16;
 const tileSize = 64;
 
-renderTileMap(tileMap_walkable, container_walkable, tileSize, 2);
-renderTileMap(tileMap_props_foreground, container_props_foreground, tileSize, 3);
-renderTileMap(tileMap_props_background, container_prope_background, tileSize, 3);
+renderTileMap(tileMap_walkable, container_walkable, tileSize);
 
 function renderTileMap(tileMap, container, tileSize, zIndex = 1) {
   const rows = tileMap.length;
+  const scaleFactor = tileSize / sourceTileSize;
 
+  const platformTiles = [];
+  const occupiedPos = new Set();
+
+  // Render walkable tiles
   tileMap.forEach((row, y) => {
     row.forEach((tile, x) => {
       if (tile !== "  ") {
+        const def = TILES[tile];
+        if (!def) return;
 
-        // pixels * scaleFactor for offset to maintain dpi
-        const scaleFactor = tileSize / sourceTileSize;
-        const tileOffsets = {
-          "Gr": { x: 0, y: -4 * scaleFactor },
-        };
+        const pixelX = x * tileSize;
+        const pixelY = (rows - 1 - y) * tileSize;
 
-        const offset = tileOffsets[tile] || { x: 0, y: 0 };
-        const pixelX = x * tileSize + offset.x;
-        const pixelY = (rows - 1 - y) * tileSize + offset.y; // flip vertically
-
-
-        const div = document.createElement("div");
-        div.style.position = "absolute";
-        div.style.width = tileSize + "px";
-        div.style.height = tileSize + "px";
-        div.style.left = pixelX + "px";
-        div.style.bottom = pixelY + "px";
-        div.style.backgroundSize = "contain";
-        div.style.backgroundRepeat = "no-repeat";
-        div.style.zIndex = zIndex;
-
-        // Tile definitions
-        switch (tile) {
-          /* :: BRICKLAND :: */
-          case "Bt":
-            div.classList.add("brick_blue_topleft_corner", "platform");
-            break;
-          case "BT":
-            div.classList.add("brick_blue_topleft_edge", "platform");
-            break;
-          case "Bm":
-            const platformVariations = ["brick_blue_topmid", "brick_blue_topmid2"];
-            const randomPlatformClass = platformVariations[Math.floor(Math.random() * platformVariations.length)];
-            div.classList.add(randomPlatformClass, "platform");
-            break;
-          case "Br":
-            div.classList.add("brick_blue_topright_corner", "platform");
-            break;
-          case "BR":
-            div.classList.add("brick_blue_topright_edge", "platform");
-            break;
-
-          /* :: WOODEN BOX STUFF :: */
-          case "Wh":
-            div.classList.add("wooden_box_horizontal", "platform");
-            break;
-          case "Wv":
-            div.classList.add("wooden_box_vertical", "platform");
-            break;
-
-          /* :: PROPS :: */
-          case "Bw":
-            div.classList.add("bottle_wine");
-            break;
-          case "Gr":
-            const propVariations = ["grass1", "grass2"];
-            const randomPropClass = propVariations[Math.floor(Math.random() * propVariations.length)];
-            div.classList.add(randomPropClass);
-            break;
-          case "GR":
-            div.classList.add("grass2");
-            break;
-        }
-
+        const div = createTileDiv(def, pixelX, pixelY, tileSize, scaleFactor, zIndex);
         container.appendChild(div);
+
+        const classList = typeof def.classes === "function" ? def.classes() : def.classes;
+        if (classList.includes("platform")) {
+          platformTiles.push({ x: pixelX, y: pixelY });
+        }
+        // Private tile-space!
+        occupiedPos.add(`${pixelX},${pixelY}`);
+      }
+    });
+  });
+
+  // Add random prop-tiles on top of walkable tiles
+  const propTiles = Object.entries(TILES).filter(([, def]) => def.isProp);
+  platformTiles.forEach(({ x, y }) => {
+    propTiles.forEach(([, def]) => {
+      const weight = def.weight ?? 0.5; // 50% if forgot to define weight in tile
+      if (Math.random() < weight) {
+        const propX = x;
+        const propY = y + tileSize;
+
+        if (!occupiedPos.has(`${propX},${propY}`)) {
+          const propDiv = createTileDiv(def, propX, propY, tileSize, scaleFactor, zIndex);
+          container.appendChild(propDiv);
+          occupiedPos.add(`${propX},${propY}`);
+        }
       }
     });
   });
 }
+function createTileDiv(def, x, y, tileSize, scaleFactor) {
+  const div = document.createElement("div");
+  const scale = def.scale || 1;
+  const offsetX = (def.offsetX || 0) * scaleFactor;
+  const offsetY = (def.offsetY || 0) * scaleFactor;
+
+  div.style.position = "absolute";
+  div.style.width = tileSize * scale + "px";
+  div.style.height = tileSize * scale + "px";
+  div.style.left = x + offsetX + "px";
+  div.style.bottom = y + offsetY + "px";
+  div.style.backgroundSize = "contain";
+  div.style.backgroundRepeat = "no-repeat";
+  const classList = typeof def.classes === "function" ? def.classes() : def.classes;
+  classList.forEach(cls => div.classList.add(cls));
+  return div;
+}
+

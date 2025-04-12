@@ -224,20 +224,20 @@ a:hover {
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 2;
+  /* z-index: 4; */
 }
-#world_props_foreground {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 4;
-}
-#world_props_background {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-}
+/* #world_props_foreground { */
+/*   position: fixed; */
+/*   bottom: 0; */
+/*   left: 0; */
+/*   z-index: 4; */
+/* } */
+/* #world_props_background { */
+/*   position: fixed; */
+/*   bottom: 0; */
+/*   left: 0; */
+/*   z-index: 1; */
+/* } */
 
 
 /* ======== TILES  ======== */
@@ -247,6 +247,7 @@ a:hover {
 }
 
 /* :: BRICKLAND :: */
+/* walkable */
 .brick_blue_topleft_corner {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/brickland/t_brick_blue_topleft_corner.gif');
@@ -272,7 +273,8 @@ a:hover {
   background-image: url('sprites/tiles/brickland/t_brick_blue_topright_edge.gif');
 }
 
-/* :: WOODEN BOX STUFF :: */
+/* :: WOODEN STUFF :: */
+/* walkable */
 .wooden_box_vertical {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/woodenbox/t_wooden_box_vert.gif');
@@ -281,19 +283,34 @@ a:hover {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/woodenbox/t_wooden_box_hor.gif');
 }
+.wooden_box_big32_vertical {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/woodenbox/t_wooden_box_big32_vert.gif');
+}
+/* decorations */
+.wooden_box_background_horizontal {
+ image-rendering: pixelated;
+ background-image: url('sprites/tiles/woodenbox/t_wooden_box_bg_hor.gif');
+}
 
-/* :: DECORATIVE PROPS :: */
+.wooden_box_background_big32_horizontal {
+ image-rendering: pixelated;
+ background-image: url('sprites/tiles/woodenbox/t_wooden_box_big32_bg_hor.gif');
+}
+
+/* :: PROPS :: */
+/* decorations */
 .bottle_wine {
   image-rendering: pixelated;
-  background-image: url('sprites/props/p_wine.gif');
+  background-image: url('sprites/tiles/props/p_wine.gif');
 }
 
 .grass1 {
   image-rendering: pixelated;
-  background-image: url('sprites/props/p_grass1.gif');
+  background-image: url('sprites/tiles/props/p_grass1.gif');
 }
 
 .grass2 {
   image-rendering: pixelated;
-  background-image: url('sprites/props/p_grass2.gif');
+  background-image: url('sprites/tiles/props/p_grass2.gif');
 }

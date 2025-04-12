@@ -6,7 +6,6 @@ function setSeasonTheme(season) {
 
 function autoDetectSeason() {
   const month = new Date().getMonth() + 1;
-  console.log("Month: " + month);
   let season = 'spring'; // Default
 
   if (month === 12 || month <= 2) {
@@ -18,7 +17,6 @@ function autoDetectSeason() {
   } else {
     season = 'autumn';
   }
-  console.log(`month [${month}] --> season set to [${season}]`);
   setSeasonTheme(season);
 }
 
