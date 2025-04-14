@@ -224,26 +224,20 @@ a:hover {
   position: fixed;
   bottom: 0;
   left: 0;
-  /* z-index: 4; */
 }
-/* #world_props_foreground { */
-/*   position: fixed; */
-/*   bottom: 0; */
-/*   left: 0; */
-/*   z-index: 4; */
-/* } */
-/* #world_props_background { */
-/*   position: fixed; */
-/*   bottom: 0; */
-/*   left: 0; */
-/*   z-index: 1; */
-/* } */
-
+#world_props_foreground {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+}
 
 /* ======== TILES  ======== */
 .platform {
-  /*border: 1px solid rgba(255, 255, 255, 0.9);*/
-  /* Style defined in tilerenderer.js */
+  /* border: 2px solid rgba(255, 200, 0, 0.9); */
+}
+.passable_platform {
+  /* border: 2px solid rgba(0, 255, 0, 0.9); */
 }
 
 /* :: BRICKLAND :: */
@@ -287,10 +281,20 @@ a:hover {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/woodenbox/t_wooden_box_big32_vert.gif');
 }
+.wooden_plank {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/woodenbox/t_wooden_plank.gif');
+}
+
 /* decorations */
 .wooden_box_background_horizontal {
  image-rendering: pixelated;
  background-image: url('sprites/tiles/woodenbox/t_wooden_box_bg_hor.gif');
+}
+
+.wooden_support_left {
+  image-rendering: pixelated;
+   background-image: url('sprites/tiles/woodenbox/t_wooden_support_left.gif');
 }
 
 .wooden_box_background_big32_horizontal {
@@ -303,6 +307,7 @@ a:hover {
 .bottle_wine {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/props/p_wine.gif');
+  z-index: 4;
 }
 
 .grass1 {

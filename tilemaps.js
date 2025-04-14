@@ -15,36 +15,26 @@
  * - walkable -
  * 'Wh' = Wooden box hor
  * 'Wv' = Wooden box vrt
+ * 'Wp' = Wooden plank
  *
  * - decorations -
  * 'Wb' = Wooden box background
  * 'WB' = Wooden box background big32
  *
- *
  * == PROPS ==
+ * - decorations - 
  * 'Gr' = Small grass tuva (random)
  * 'Bw' = Bottle wine
  */
 
 const tileMap_walkable = [
+  ['Wp'],
+  ['Ws'],
   ['  ', '  ', 'Wh'],
   ['  '],
   ['Wv'],
-  ['  '],
-  ['  ', '  ', 'Wh'],
+  ['Wp'],
+  ['Ws', '  ', 'Wh'],
   ['  ', '  ', 'Wv', 'Wh'],
-  ['  ', 'Bt', 'Bm', 'Bm', 'Br'],
+  ['Wp', 'Bt', 'Bm', 'Bm', 'Br'],
 ];
-
-// const tileMap_props_foreground = [
-//   ['Gr'],
-//   ['  '],
-//   ['  '],
-//   ['  ', '  ', '  ', 'Gr'],
-//   ['  ', 'Gr'],
-//   ['  ']
-// ];
-//
-// const tileMap_props_background = [
-//   ['WB'],
-// ];

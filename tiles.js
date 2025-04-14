@@ -1,3 +1,10 @@
+/* optional params:
+ * isProp     - randomly place tile above any random walkabe tile.
+ * weight     - weight for prop placement probability (0-1, 50% if not defined).
+ * scale      - if using for example 32x32 instead of 16x16 scale: 2 will keep correct dpi.
+ * offsetY    - yes... 
+ * tileWidth,
+ * tileHeight - for non-square tiles, specify tilesize in pixels for correct collision if needed. */
 
 const TILES = {
   /* :: BRICKLAND :: */
@@ -21,15 +28,29 @@ const TILES = {
     classes: ["wooden_box_big32_vertical", "platform"],
     scale: 2
   },
+
+  "Wp": {
+    classes: ["wooden_plank", "passable_platform"],
+    tileWidth: 16,
+    tileHeight: 2,
+    offsetY: 14,
+  },
+
+  "Ws": {
+    classes: ["wooden_support_left"],
+    offsetY: 14,
+    isForeGround: true,
+  },
+
   // decorations
   "Wb": {
     classes: ["wooden_box_background_horizontal"],
     isProp: true,
-    weight: 0.3
+    weight: 0.35
   },
   "WB": {
     classes: ["wooden_box_background_big32_horizontal"],
-    scale: 2, // TODO: fix scaled placement if random. And random placed BG to be able to be placed on occupied spaces.
+    scale: 2,
   },
 
   /* :: PROPS :: */
@@ -37,6 +58,7 @@ const TILES = {
   "Bw": {
     classes: ["bottle_wine"],
     isProp: true,
+    isForeGround: true,
     weight: 0.3,
   },
   "Gr": {
@@ -46,6 +68,7 @@ const TILES = {
     },
     offsetY: -4,
     isProp: true,
+    isForeGround: true,
     weight: 0.8,
   },
 };

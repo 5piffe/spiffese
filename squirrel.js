@@ -26,8 +26,17 @@ const jumpBrakeFactor = 15;
 const minJumpAbortDelta = 350;
 const groundLevel = 0;
 
+// Jump down passable_platform
+let fallThroughTimer = 0;
+let ignoreTimer = 0;
+const fallThroughTime = 0.2;
+const ignorePlatformDuration = 0.3;
+export const platformState = {
+  ignoreGroundedPlatform: null
+};
+
 import { isGrounded, checkXCollision, isHeadBump } from "./platforming.js";
-const platformElements = Array.from(document.querySelectorAll(".platform"));
+const platformElements = Array.from(document.querySelectorAll(".platform, .passable_platform"));
 
 function getPlatformRects() {
   return platformElements.map(el => {
@@ -66,8 +75,6 @@ function update(currentTime) {
     physicsUpdate(fixedDelta);
     accumulatedTime -= fixedDelta;
   }
-  updateSquirrelAnimation();
-  checkBorder();
 
   requestAnimationFrame(update);
 }
@@ -75,6 +82,8 @@ requestAnimationFrame(update);
 
 function physicsUpdate(fixedDelta) {
   moveSquirrel(fixedDelta);
+  updateSquirrelAnimation();
+  checkBorder();
 }
 
 function moveSquirrel(fixedDeltaTime) {
@@ -102,10 +111,35 @@ function moveSquirrel(fixedDeltaTime) {
     jumpDelta = jumpStrength;
   }
 
-  // Start fall if !jump
+  // Start fall if walking off platform
   if (!isJumping && !groundedPlatform && currentJumpHeight > groundLevel) {
     isJumping = true;
     jumpDelta = 0;
+  }
+
+  // Start falling if down held on passable_platform
+  if (groundedPlatform && groundedPlatform.element.classList.contains("passable_platform")) {
+    if (!isJumping && hasLanded) {
+      if (GetKey(EDirection.DOWN)) {
+        fallThroughTimer += fixedDeltaTime;
+        if (fallThroughTimer >= fallThroughTime) {
+          isJumping = true;
+          hasLanded = false;
+          ignoreTimer = ignorePlatformDuration;
+          fallThroughTimer = 0;
+          platformState.ignoreGroundedPlatform = groundedPlatform;
+        }
+      } else {
+        fallThroughTimer = 0;
+      }
+    }
+  }
+
+  if (ignoreTimer > 0) {
+    ignoreTimer -= fixedDeltaTime;
+    if (ignoreTimer <= 0) {
+      platformState.ignoreGroundedPlatform = null;
+    }
   }
 
   // In Air
@@ -192,7 +226,7 @@ function checkBorder() {
   if (squirrelPosition < 2) {
     squirrelPosition = 2;
     return true;
-  } else if ((squirrelPosition + squirrel.offsetWidth) > (window.innerWidth - 22)) {
+  } else if ((squirrelPosition + squirrel.offsetWidth) > (window.innerWidth - 22) /*&& GetKey(EDirection.RIGHT)*/) {
     squirrelPosition = (window.innerWidth - 22) - squirrel.offsetWidth;
     return true;
   }

@@ -1,10 +1,11 @@
 const container_walkable = document.getElementById("world_walkable");
+const container_foreground = document.getElementById("world_props_foreground");
 const sourceTileSize = 16;
 const tileSize = 64;
 
-renderTileMap(tileMap_walkable, container_walkable, tileSize);
+renderTileMap(tileMap_walkable, tileSize);
 
-function renderTileMap(tileMap, container, tileSize, zIndex = 1) {
+function renderTileMap(tileMap, tileSize) {
   const rows = tileMap.length;
   const scaleFactor = tileSize / sourceTileSize;
 
@@ -21,11 +22,12 @@ function renderTileMap(tileMap, container, tileSize, zIndex = 1) {
         const pixelX = x * tileSize;
         const pixelY = (rows - 1 - y) * tileSize;
 
-        const div = createTileDiv(def, pixelX, pixelY, tileSize, scaleFactor, zIndex);
+        const div = createTileDiv(def, pixelX, pixelY, scaleFactor);
+        const container = def.isForeGround ? container_foreground : container_walkable;
         container.appendChild(div);
 
         const classList = typeof def.classes === "function" ? def.classes() : def.classes;
-        if (classList.includes("platform")) {
+        if (classList.includes("platform") || classList.includes("passable_platform")) {
           platformTiles.push({ x: pixelX, y: pixelY });
         }
         // Private tile-space!
@@ -44,23 +46,28 @@ function renderTileMap(tileMap, container, tileSize, zIndex = 1) {
         const propY = y + tileSize;
 
         if (!occupiedPos.has(`${propX},${propY}`)) {
-          const propDiv = createTileDiv(def, propX, propY, tileSize, scaleFactor, zIndex);
-          container.appendChild(propDiv);
+          const propDiv = createTileDiv(def, propX, propY, scaleFactor);
+
+          const propContainer = def.isForeGround ? container_foreground : container_walkable;
+          propContainer.appendChild(propDiv);
           occupiedPos.add(`${propX},${propY}`);
         }
       }
     });
   });
 }
-function createTileDiv(def, x, y, tileSize, scaleFactor) {
+function createTileDiv(def, x, y, scaleFactor) {
   const div = document.createElement("div");
   const scale = def.scale || 1;
   const offsetX = (def.offsetX || 0) * scaleFactor;
   const offsetY = (def.offsetY || 0) * scaleFactor;
 
+  const tileWidth = (def.tileWidth || sourceTileSize) * scaleFactor * scale;
+  const tileHeight = (def.tileHeight || sourceTileSize) * scaleFactor * scale;
+
   div.style.position = "absolute";
-  div.style.width = tileSize * scale + "px";
-  div.style.height = tileSize * scale + "px";
+  div.style.width = tileWidth + "px";
+  div.style.height = tileHeight + "px";
   div.style.left = x + offsetX + "px";
   div.style.bottom = y + offsetY + "px";
   div.style.backgroundSize = "contain";
