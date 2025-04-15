@@ -34,6 +34,7 @@ const TILES = {
     tileWidth: 16,
     tileHeight: 2,
     offsetY: 14,
+    isForeGround: true,
   },
 
   "Ws": {

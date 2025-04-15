@@ -6,7 +6,6 @@ body {
     padding: 0;
     background: var(--bg-color);
 
-   
 background-image: linear-gradient(to bottom,
                        var(--bg-col-gradientTop),
                        var(--bg-col-gradientBottom)),
@@ -24,7 +23,6 @@ header {
     flex-direction: column;
     align-items: center;
 }
-
 
 #header-container {
   margin-top: 24px;
@@ -195,7 +193,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Squirrels */
+/* ==== Squirrels ==== */
 #squirrel-container {
     position: fixed;
     bottom: 0px;
@@ -213,13 +211,6 @@ a:hover {
     left: 0;
 }
 
-#tutorial { /* Add key-binding info gifs and stuff */
-  image-rendering: pixelated;
-  width: 64px;
-  height: 64px;
-  position: absolute;
-}
-
 #world_walkable { 
   position: fixed;
   bottom: 0;
@@ -232,7 +223,49 @@ a:hover {
   z-index: 4;
 }
 
-/* ======== TILES  ======== */
+#tutorial { /* Add key-binding info gifs and stuff */
+  image-rendering: pixelated;
+  width: 64px;
+  height: 64px;
+  position: absolute;
+}
+
+/* ==== TOUCH BUTTONS ====*/
+#touch-controls {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.touch-group {
+  display: flex;
+  gap: 70px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.touch-button {
+  width: 64px;
+  height: 64px;
+  opacity: 65%;
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+  background-size: contain;
+  user-select: none;
+  user-drag: none;
+  touch-action: none;
+}
+
+#btn-w { background-image: url('sprites/touch_controls/btn_up.gif'); }
+#btn-a { background-image: url('sprites/touch_controls/btn_left.gif'); }
+#btn-s { background-image: url('sprites/touch_controls/btn_down.gif'); }
+#btn-d { background-image: url('sprites/touch_controls/btn_right.gif'); }
+
+/* ==== TILES ==== */
 .platform {
   /* border: 2px solid rgba(255, 200, 0, 0.9); */
 }

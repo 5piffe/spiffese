@@ -188,6 +188,7 @@ function moveSquirrel(fixedDeltaTime) {
         jumpDelta = 0;
       }
     }
+
   }
 
   if (!isXBlocked) {
