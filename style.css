@@ -244,8 +244,8 @@ a:hover {
 .touch-group {
   display: flex;
   gap: 70px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .touch-button {
