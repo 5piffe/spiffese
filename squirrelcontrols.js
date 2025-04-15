@@ -1,3 +1,4 @@
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 const EDirection = Object.freeze({
   UP: 'w',
@@ -9,90 +10,62 @@ const EDirection = Object.freeze({
 const keyState = { w: false, s: false, a: false, d: false };
 const touchState = { w: false, s: false, a: false, d: false };
 
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
 function setupTouchControls() {
   const touchControls = document.createElement('div');
   touchControls.id = 'touch-controls';
 
-  const leftGroup = document.createElement('div');
-  leftGroup.className = 'touch-group';
-
-  const rightGroup = document.createElement('div');
-  rightGroup.className = 'touch-group';
-
-  const buttonMap = {
-    a: leftGroup,
-    d: leftGroup,
-    s: rightGroup,
-    w: rightGroup
-  };
-
-  Object.entries(buttonMap).forEach(([key, group]) => {
+  const keys = ['a', 'd', 's', 'w'];
+  keys.forEach(key => {
     const btn = document.createElement('div');
     btn.className = 'touch-button';
     btn.id = `btn-${key}`;
-    group.appendChild(btn);
+    touchControls.appendChild(btn);
   });
 
-  touchControls.appendChild(leftGroup);
-  touchControls.appendChild(rightGroup);
   document.body.appendChild(touchControls);
-
   setupTouchEvents();
 }
 
 function setupTouchEvents() {
   let activeKeys = new Set();
 
-  const updateActiveKeys = (e) => {
-    e.preventDefault();
-    const newActiveKeys = new Set();
+  const updateActiveTouches = (event) => {
+    event.preventDefault();
+    const newKeys = new Set();
 
-    for (let i = 0; i < e.touches.length; i++) {
-      const touch = e.touches[i];
+    for (let i = 0; i < event.touches.length; i++) {
+      const touch = event.touches[i];
       const el = document.elementFromPoint(touch.clientX, touch.clientY);
+
       if (el && el.classList.contains('touch-button')) {
         const key = el.id.replace('btn-', '');
-        newActiveKeys.add(key);
-      }
-    }
-
-    for (const key in touchState) {
-      touchState[key] = false;
-    }
-
-    newActiveKeys.forEach(key => {
-      if (key in touchState) {
+        newKeys.add(key);
         touchState[key] = true;
       }
+    }
+
+    activeKeys.forEach(key => {
+      if (!newKeys.has(key)) {
+        touchState[key] = false;
+      }
     });
 
-    activeKeys = newActiveKeys;
+    activeKeys = newKeys;
   };
 
-  const clearTouches = () => {
-    activeKeys.forEach(key => {
-      touchState[key] = false;
-    });
+  const clearAllTouches = () => {
+    activeKeys.forEach(key => touchState[key] = false);
     activeKeys.clear();
   };
 
-  const controls = document.getElementById('touch-controls');
-  controls.addEventListener('touchstart', updateActiveKeys);
-  controls.addEventListener('touchmove', updateActiveKeys);
-  controls.addEventListener('touchend', updateActiveKeys);
-  controls.addEventListener('touchcancel', clearTouches);
-
-  controls.querySelectorAll('.touch-button').forEach(el => {
-    const key = el.id.replace('btn-', '');
-    el.addEventListener('mousedown', () => { touchState[key] = true; });
-    el.addEventListener('mouseup', () => { touchState[key] = false; });
-    el.addEventListener('mouseleave', () => { touchState[key] = false; });
-  });
+  const container = document.getElementById('touch-controls');
+  container.addEventListener('touchstart', updateActiveTouches, { passive: false });
+  container.addEventListener('touchmove', updateActiveTouches, { passive: false });
+  container.addEventListener('touchend', updateActiveTouches);
+  container.addEventListener('touchcancel', clearAllTouches);
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   if (isTouchDevice) {
     setupTouchControls();
   }
@@ -115,3 +88,4 @@ document.addEventListener('keyup', (event) => {
 function GetKey(direction) {
   return keyState[direction] || touchState[direction];
 }
+

@@ -1,3 +1,9 @@
+#body-container {
+  padding-bottom: 80px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -6,15 +12,11 @@ body {
     padding: 0;
     background: var(--bg-color);
 
-background-image: linear-gradient(to bottom,
-                       var(--bg-col-gradientTop),
-                       var(--bg-col-gradientBottom)),
-                       url('images/bg_spiff.jpg');
+background-image: linear-gradient(to bottom, var(--bg-col-gradientTop), var(--bg-col-gradientBottom)), url('images/bg_spiff.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
 }
 
 header {
@@ -200,6 +202,9 @@ a:hover {
     left: 0px;
     z-index: 3;
 }
+body.touch #squirrel-container{
+  bottom: 80px;
+}
 
 #squirrel {
     image-rendering: pixelated;
@@ -213,53 +218,49 @@ a:hover {
 
 #world_walkable { 
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   left: 0;
 }
+body.touch #world_walkable {
+  bottom: 80px;
+}
+
 #world_props_foreground {
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   left: 0;
   z-index: 4;
 }
-
-#tutorial { /* Add key-binding info gifs and stuff */
-  image-rendering: pixelated;
-  width: 64px;
-  height: 64px;
-  position: absolute;
+body.touch #world_props_foreground {
+  bottom: 80px;
 }
+
 
 /* ==== TOUCH BUTTONS ====*/
 #touch-controls {
   position: fixed;
-  bottom: 10px;
+  bottom: 0;
   left: 0;
   width: 100%;
+  height: 80px;
   display: flex;
   justify-content: space-between;
-  z-index: 5;
-}
-
-.touch-group {
-  display: flex;
-  gap: 70px;
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
-.touch-button {
-  width: 64px;
-  height: 64px;
-  opacity: 65%;
-  image-rendering: pixelated;
-  background-repeat: no-repeat;
-  background-size: contain;
-  user-select: none;
-  user-drag: none;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.8);
   touch-action: none;
 }
 
+.touch-button {
+  flex: 1;
+  height: 100%;
+  opacity: 0.65;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  image-rendering: pixelated;
+  border: 1px solid rgba(100, 200, 0, 0.2);
+
+}
 #btn-w { background-image: url('sprites/touch_controls/btn_up.gif'); }
 #btn-a { background-image: url('sprites/touch_controls/btn_left.gif'); }
 #btn-s { background-image: url('sprites/touch_controls/btn_down.gif'); }

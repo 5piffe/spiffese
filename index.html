@@ -2,53 +2,24 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>spiffe</title>
-  <link rel="icon" type="image/png" href="images/icon_16.png">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="themes.css">
+  <link rel="icon" type="image/png" href="images/icon_16.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="themes.css" />
 </head>
 
 <body>
-  <header>
-    <div id="header-container">
-      <div id="name">Richard Nordström</div>
-      <h1 id="header"></h1>
-    </div>
-    <p id="subtitle"></p>
-    <p id="contact" style="opacity: 0; transition: opacity 0.5s;">
-      <a href="#" id="email-link">copy mail</a>
-    </p>
-    <div id="copy-message">ctrl+c spiffe84@gmail.com</div>
-  </header>
+  <script src="theme.js"></script>
+  <script src="squirrelcontrols.js"></script>
+  <script src="preload.js"></script>
 
-  <div id="tree-container"></div>
-
-  <div id="squirrel-container">
-    <div id="squirrel"></div>
-  </div>
-
-  <div id="world_walkable"></div>
-  <div id="world_props_foreground"></div>
-
-  <!-- <!-- in footer separate from body? --> -->
-  <!-- <div id="touch-controls"> -->
-  <!--   <div class="touch-button" id="btn-a"></div> -->
-  <!--   <div class="touch-button" id="btn-d"></div> -->
-  <!--   <div class="touch-button" id="btn-s"></div> -->
-  <!--   <div class="touch-button" id="btn-w"></div> -->
-  <!-- </div> -->
-
+  <script type="module" src="squirrel.js"></script>
+  <script src="careertimeline.js"></script>
+  <script src="tiles.js"></script>
+  <script src="tilemaps.js"></script>
+  <script src="tilererenderer.js"></script>
 </body>
 
 </html>
-
-<script src="theme.js"></script>
-<script src="preload.js"></script>
-<script src="careertimeline.js"></script>
-<script src="squirrelcontrols.js"></script>
-<script type="module" src="squirrel.js"></script>
-<script src="tiles.js"></script>
-<script src="tilemaps.js"></script>
-<script src="tilererenderer.js"></script>
