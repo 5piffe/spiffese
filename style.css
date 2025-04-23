@@ -265,6 +265,26 @@ body.touch #world_props_foreground {
 #btn-s { background-image: url('sprites/touch_controls/btn_down.gif'); }
 #btn-d { background-image: url('sprites/touch_controls/btn_right.gif'); }
 
+#particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  opacity: 0.8;
+}
+
 /* ==== TILES ==== */
 .platform {
   /* border: 2px solid rgba(255, 200, 0, 0.9); */

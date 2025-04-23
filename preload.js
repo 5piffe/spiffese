@@ -6,6 +6,10 @@ Object.values(squirrelAnimations).forEach(season => {
   });
 });
 
+// seasonal weather-effect
+const particleContainer = document.createElement("div");
+particleContainer.id = "particle-container";
+document.body.appendChild(particleContainer);
 
 // main page structure
 function appendDiv(id, parent = document.body, className = "") {
