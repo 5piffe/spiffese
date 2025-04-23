@@ -4,7 +4,8 @@
  * scale      - if using for example 32x32 instead of 16x16 scale: 2 will keep correct dpi.
  * offsetY    - yes... 
  * tileWidth,
- * tileHeight - for non-square tiles, specify tilesize in pixels for correct collision if needed. */
+ * tileHeight - for non-square tiles, specify tilesize in pixels for correct collision if needed.
+ * isForeGround - z-index in front of squirrel */
 
 const TILES = {
   /* :: BRICKLAND :: */
@@ -37,13 +38,13 @@ const TILES = {
     isForeGround: true,
   },
 
+  // decorations
   "Ws": {
     classes: ["wooden_support_left"],
     offsetY: 14,
     isForeGround: true,
   },
 
-  // decorations
   "Wb": {
     classes: ["wooden_box_background_horizontal"],
     isProp: true,

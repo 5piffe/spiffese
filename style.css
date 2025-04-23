@@ -203,7 +203,7 @@ a:hover {
     z-index: 3;
 }
 body.touch #squirrel-container{
-  bottom: 80px;
+  bottom: 10vh;
 }
 
 #squirrel {
@@ -222,7 +222,7 @@ body.touch #squirrel-container{
   left: 0;
 }
 body.touch #world_walkable {
-  bottom: 80px;
+  bottom: 10vh;
 }
 
 #world_props_foreground {
@@ -232,21 +232,20 @@ body.touch #world_walkable {
   z-index: 4;
 }
 body.touch #world_props_foreground {
-  bottom: 80px;
+  bottom: 10vh;
 }
-
 
 /* ==== TOUCH BUTTONS ====*/
 #touch-controls {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 80px;
+  width: 100vw;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   touch-action: none;
 }
 

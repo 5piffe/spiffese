@@ -38,7 +38,6 @@ export const platformState = {
 
 import { isGrounded, checkXCollision, isHeadBump } from "./platforming.js";
 const platformElements = Array.from(document.querySelectorAll(".platform, .passable_platform"));
-console.log(isTouchDevice);
 function getPlatformRects() {
   return platformElements.map(el => {
     const rect = el.getBoundingClientRect();

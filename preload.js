@@ -22,7 +22,6 @@ const header = document.createElement("header");
 bodyContainer.appendChild(header);
 
 if (isTouchDevice) {
-  console.log("added touch classname");
   document.body.classList.add('touch');
 }
 const headerContainer = appendDiv("header-container", header);
