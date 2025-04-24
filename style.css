@@ -283,6 +283,7 @@ body.touch #world_props_foreground {
   background-repeat: no-repeat;
   image-rendering: pixelated;
   opacity: 0.8;
+  transition: transform 1.5s ease, opacity 1.5s ease;
 }
 
 /* ==== TILES ==== */
