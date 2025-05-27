@@ -30,9 +30,12 @@ if (isTouchDevice) {
 }
 const headerContainer = appendDiv("header-container", header);
 appendDiv("name", headerContainer).textContent = "Richard Nordström";
-appendDiv("header", headerContainer); // h1, up to you if you want to create it as an h1 element instead
+appendDiv("header", headerContainer);
 appendDiv("subtitle", header);
-appendDiv("contact", header).innerHTML = `<a href="#" id="email-link">copy mail</a>`;
+appendDiv("contact", header).innerHTML = `
+  <a href="#" id="email-link">copy email</a>
+  <a href="https://www.linkedin.com/in/richard-nordstr%C3%B6m-055055310/" target="_blank" id="linkedin-link">LinkedIn</a>
+`;
 appendDiv("copy-message", header).textContent = "ctrl+c spiffe84@gmail.com";
 
 appendDiv("tree-container", bodyContainer);

@@ -61,9 +61,7 @@ header {
 #contact {
     margin-top: 3px;
     font-size: 16px;
-    text-align: left;
-    margin-left: -248px;
-    background-image: var(--email-icon);
+    text-align: center;
     background-repeat: no-repeat;
 }
 
@@ -72,7 +70,6 @@ header {
     padding-left: 18px;
     display: inline-block;
     color: var(--text-color);
-    display: flex;
     align-items: center;
 }
 
@@ -80,11 +77,26 @@ header {
     text-decoration: underline;
 }
 
-.email-icon {
-    width: 16px;
-    height: 16px;
-    margin-right: 3px;
-    transform: translateY(-1px);
+#email-link::before {
+  background-image: var(--email-icon);
+}
+
+#linkedin-link::before {
+  background-image: var(--linkedin-icon);
+}
+
+#email-link::before,
+#linkedin-link::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 6px;
+  vertical-align: middle;
+  transform: translateY(-1px);
 }
 
 #copy-message {
@@ -372,4 +384,14 @@ body.touch #world_props_foreground {
 .grass2 {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/props/p_grass2.gif');
+}
+
+.insect1 {
+  image-rendering: pixelated;
+  background-image: url('animations/insect1.gif');
+}
+
+.insect2 {
+  image-rendering: pixelated;
+  background-image: url('animations/insect2.gif');
 }

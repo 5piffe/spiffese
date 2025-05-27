@@ -73,4 +73,13 @@ const TILES = {
     isForeGround: true,
     weight: 0.8,
   },
+  "Ii": {
+    classes() {
+      const props = ["insect1", "insect2"];
+      return [props[Math.floor(Math.random() * props.length)]];
+    },
+    isProp: true,
+    isForeGround: true,
+    weight: 0.99,
+  },
 };
