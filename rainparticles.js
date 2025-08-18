@@ -50,18 +50,21 @@ const seasonalParticles = {
     creationfrequency: 1500,
   },
   autumn: {
-    image: "url('sprites/weatherparticles/raindrop.gif')",
-    minSpeed: 1000,
-    maxSpeed: 5000,
+    images: [
+      "url('sprites/weatherparticles/leaf12.gif')",
+      "url('sprites/weatherparticles/leaf2_sml.gif')",
+    ],
+    minSpeed: 8,
+    maxSpeed: 70,
     minScale: 0.1,
-    maxScale: 0.52,
-    minRotationSpeed: 0,
-    maxRotationSpeed: 0,
+    maxScale: 0.6,
+    minRotationSpeed: 0.1,
+    maxRotationSpeed: 1,
     minOpacity: 0.6,
     maxOpacity: 1,
-    minLifetime: 10,
-    maxLifetime: 10,
-    creationfrequency: 150,
+    minLifetime: 5,
+    maxLifetime: 20,
+    creationfrequency: 75,
   },
 };
 
@@ -119,7 +122,7 @@ function createParticle(season) {
     p.style.transform += " scale(0)";
     p.style.opacity = "0";
 
-    // Wait for the transition to finish, then remove it
+
     setTimeout(() => p.remove(), 500);
   }, lifetime * 1000);
 

@@ -20,7 +20,6 @@ function autoDetectSeason() {
   setSeasonTheme(season);
 }
 
-// Let's keep this here, since these animations could be season and/or other theme specific
 const squirrelAnimations = {
   base: {
     RUN_LEFT: "animations/squirrel/base/squirrel_runleft_base.gif",
@@ -72,8 +71,6 @@ const squirrelAnimations = {
     FALL_LEFT: "animations/squirrel/summer/squirrel_fallleft_summer.gif",
     FALL_RIGHT: "animations/squirrel/summer/squirrel_fallright_summer.gif",
   },
-
-  //...
 }
 
 function GetSquirrelAnimation(direction) {
