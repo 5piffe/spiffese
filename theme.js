@@ -2,6 +2,10 @@ function setSeasonTheme(season) {
   document.body.classList.remove('winter', 'spring', 'summer', 'autumn');
   document.body.classList.add(season);
   localStorage.setItem('season', season);
+
+  if (typeof startParticles === "function") {
+    startParticles();
+  }
 }
 
 function autoDetectSeason() {

@@ -35,7 +35,6 @@ const seasonalParticles = {
       "url('sprites/weatherparticles/pollenstuff.gif')",
       "url('sprites/weatherparticles/pollenstuff2.gif')",
       "url('sprites/weatherparticles/pollenstuff3.gif')",
-
     ],
     minSpeed: 5,
     maxSpeed: 50,
@@ -53,6 +52,7 @@ const seasonalParticles = {
     images: [
       "url('sprites/weatherparticles/leaf12.gif')",
       "url('sprites/weatherparticles/leaf2_sml.gif')",
+      "url('sprites/weatherparticles/leaf1_sml.gif')",
     ],
     minSpeed: 8,
     maxSpeed: 70,
@@ -70,14 +70,13 @@ const seasonalParticles = {
 
 const MAX_PARTICLES = 30;
 const container = document.getElementById("particle-container");
-const season = localStorage.getItem('season') || 'spring';
-const settings = seasonalParticles[season];
 
-// Create rainthing
-function createParticle(season) {
+function createParticle(/*season*/) {
   if (container.childElementCount >= MAX_PARTICLES) return;
 
-  const settings = seasonalParticles[season] || seasonalParticles["winter"];
+  const season = localStorage.getItem("season") || "spring";
+  const settings = seasonalParticles[season] || seasonalParticles["spring"];
+
   const p = document.createElement("div");
   p.classList.add("particle");
 
@@ -122,20 +121,29 @@ function createParticle(season) {
     p.style.transform += " scale(0)";
     p.style.opacity = "0";
 
-
     setTimeout(() => p.remove(), 500);
   }, lifetime * 1000);
 
   requestAnimationFrame(fall);
 }
 
-let particleTimer = setInterval(() => createParticle(season), settings.creationfrequency);
+let particleTimer;
+
+function startParticles() {
+  clearInterval(particleTimer);
+
+  const season = localStorage.getItem("season") || "spring";
+  const settings = seasonalParticles[season] || seasonalParticles["winter"];
+
+  particleTimer = setInterval(createParticle, settings.creationfrequency);
+}
+
+startParticles();
 
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     clearInterval(particleTimer);
   } else {
-    particleTimer = setInterval(() => createParticle(season), settings.creationfrequency);
+    startParticles();
   }
 });
-
