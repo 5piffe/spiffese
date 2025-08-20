@@ -1,11 +1,3 @@
-// Preload gifs
-Object.values(squirrelAnimations).forEach(season => {
-  Object.values(season).forEach(src => {
-    const img = new Image();
-    img.src = src;
-  });
-});
-
 // seasonal weather-effect
 const particleContainer = document.createElement("div");
 particleContainer.id = "particle-container";

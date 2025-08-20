@@ -3,8 +3,21 @@ function setSeasonTheme(season) {
   document.body.classList.add(season);
   localStorage.setItem('season', season);
 
+  // Load animations on theme-change to not flick while loading squirel on the fly
+  const animations = squirrelAnimations[season];
+  if (animations) {
+    Object.values(animations).forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+    // console.log(animations);
+    // console.log(season + " animations loaded");
+  }
+
+  // weather-particles need refresh if changing theme manually after page load
   if (typeof startParticles === "function") {
     startParticles();
+    // console.log("particle refreshed");
   }
 }
 
