@@ -5,14 +5,18 @@ const tileSize = 64;
 
 renderTileMap(tileMap_walkable, tileSize);
 
-function renderTileMap(tileMap, tileSize) {
+function renderTileMap(tileMap, tileSize, season) {
   const rows = tileMap.length;
   const scaleFactor = tileSize / sourceTileSize;
 
   const platformTiles = [];
   const occupiedPos = new Set();
 
-  // Render walkable tiles
+  // Clear previous props
+  document.querySelectorAll("#world_props_foreground [data-is-prop='true']").forEach(el => el.remove());
+  document.querySelectorAll("#world_walkable [data-is-prop='true']").forEach(el => el.remove());
+
+  // walkable
   tileMap.forEach((row, y) => {
     row.forEach((tile, x) => {
       if (tile !== "  ") {
@@ -22,32 +26,30 @@ function renderTileMap(tileMap, tileSize) {
         const pixelX = x * tileSize;
         const pixelY = (rows - 1 - y) * tileSize;
 
-        const div = createTileDiv(def, pixelX, pixelY, scaleFactor);
+        const div = createTileDiv(def, pixelX, pixelY, scaleFactor, season);
         const container = def.isForeGround ? container_foreground : container_walkable;
         container.appendChild(div);
 
-        const classList = typeof def.classes === "function" ? def.classes() : def.classes;
+        const classList = typeof def.classes === "function" ? def.classes(season) : def.classes;
         if (classList.includes("platform") || classList.includes("passable_platform")) {
           platformTiles.push({ x: pixelX, y: pixelY });
         }
-        // Private tile-space!
         occupiedPos.add(`${pixelX},${pixelY}`);
       }
     });
   });
 
-  // Add random prop-tiles on top of walkable tiles
+  // Random prop decorations on walkable stuff
   const propTiles = Object.entries(TILES).filter(([, def]) => def.isProp);
   platformTiles.forEach(({ x, y }) => {
     propTiles.forEach(([, def]) => {
-      const weight = def.weight ?? 0.5; // 50% if forgot to define weight in tile
+      const weight = def.weight ?? 0.5;
       if (Math.random() < weight) {
         const propX = x;
         const propY = y + tileSize;
 
         if (!occupiedPos.has(`${propX},${propY}`)) {
-          const propDiv = createTileDiv(def, propX, propY, scaleFactor);
-
+          const propDiv = createTileDiv(def, propX, propY, scaleFactor, season);
           const propContainer = def.isForeGround ? container_foreground : container_walkable;
           propContainer.appendChild(propDiv);
           occupiedPos.add(`${propX},${propY}`);
@@ -56,7 +58,8 @@ function renderTileMap(tileMap, tileSize) {
     });
   });
 }
-function createTileDiv(def, x, y, scaleFactor) {
+
+function createTileDiv(def, x, y, scaleFactor, season) {
   const div = document.createElement("div");
   const scale = def.scale || 1;
   const offsetX = (def.offsetX || 0) * scaleFactor;
@@ -72,8 +75,12 @@ function createTileDiv(def, x, y, scaleFactor) {
   div.style.bottom = y + offsetY + "px";
   div.style.backgroundSize = "contain";
   div.style.backgroundRepeat = "no-repeat";
-  const classList = typeof def.classes === "function" ? def.classes() : def.classes;
+
+  const classList = typeof def.classes === "function" ? def.classes(season) : def.classes;
   classList.forEach(cls => div.classList.add(cls));
+
+  if (def.isProp) div.dataset.isProp = "true";
+
   return div;
 }
 

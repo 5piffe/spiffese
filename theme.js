@@ -1,38 +1,49 @@
 function setSeasonTheme(season) {
-  document.body.classList.remove('winter', 'spring', 'summer', 'autumn');
+  document.body.classList.remove('winter', 'spring', 'summer', 'autumn', 'halloween');
   document.body.classList.add(season);
   localStorage.setItem('season', season);
 
-  // Load animations on theme-change to not flick while loading squirel on the fly
+  // TODO: Fix animation load or cache on manual theme-change need?
   const animations = squirrelAnimations[season];
   if (animations) {
     Object.values(animations).forEach(src => {
       const img = new Image();
       img.src = src;
     });
-    // console.log(animations);
-    // console.log(season + " animations loaded");
   }
 
-  // weather-particles need refresh if changing theme manually after page load
   if (typeof startParticles === "function") {
+
     startParticles();
-    // console.log("particle refreshed");
+
   }
+  renderTileMap(tileMap_walkable, tileSize, season);
 }
 
 function autoDetectSeason() {
-  const month = new Date().getMonth() + 1;
-  let season = 'spring'; // Default
+  let season = 'spring';
+  let isFestive = false;
 
-  if (month === 12 || month <= 2) {
-    season = 'winter';
-  } else if (month >= 3 && month <= 5) {
-    season = 'spring';
-  } else if (month >= 6 && month <= 8) {
-    season = 'summer';
-  } else {
-    season = 'autumn';
+  const now = new Date();
+  const month = new Date().getMonth() + 1;
+  const day = now.getDate();
+
+  // TODO: Calculate festive range from date for non-fixed holidays
+  if ((month === 10 && day >= 25) || (month === 11 && day === 2)) {
+    season = 'halloween';
+    isFestive = true;
+  }
+
+  if (!isFestive) {
+    if (month === 12 || month <= 2) {
+      season = 'winter';
+    } else if (month >= 3 && month <= 5) {
+      season = 'spring';
+    } else if (month >= 6 && month <= 8) {
+      season = 'summer';
+    } else {
+      season = 'autumn';
+    }
   }
   setSeasonTheme(season);
 }

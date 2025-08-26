@@ -45,3 +45,16 @@
   --email-icon: url('images/letter_16_autumn.png');
   --linkedin-icon: url('images/linkedin_16_autumn.png');
 }
+
+/* Festive themes  */
+.halloween {
+  --bg-color: #190606;
+  --shade-color: #6C2423;
+  --text-color: #9C3432;
+
+  --bg-col-gradientTop: rgba(25, 6, 6, 0.85);
+  --bg-col-gradientBottom: rgba(25, 6, 6, 1);
+
+  --email-icon: url('images/letter_16_halloween.png');
+  --linkedin-icon: url('images/linkedin_16_halloween.png');
+}

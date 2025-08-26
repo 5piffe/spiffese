@@ -64,7 +64,11 @@ const TILES = {
     weight: 0.3,
   },
   "Gr": {
-    classes() {
+    classes(season) {
+      if (season === "halloween") {
+        const props = ["pumpkin1", "spider_web"];
+        return [props[Math.floor(Math.random() * props.length)]];
+      }
       const props = ["grass1", "grass2"];
       return [props[Math.floor(Math.random() * props.length)]];
     },

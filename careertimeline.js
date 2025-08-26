@@ -174,7 +174,7 @@ function startTimeline() {
         addJobTitle(stemWrapper,
           "2009 – 2011",
           "(EDU) SAE",
-          "https://www.sae.org/",
+          "https://www.sae.edu/gbr/audio/",
           "Audio Production Program",
           ["Live sound engineering", "Mixing/Mastering", "DAW workflow", "Engineering", "Electronics", "Production"]
         );

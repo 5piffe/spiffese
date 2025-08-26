@@ -370,6 +370,7 @@ body.touch #world_props_foreground {
 
 /* :: PROPS :: */
 /* decorations */
+/* spring */
 .bottle_wine {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/props/p_wine.gif');
@@ -394,4 +395,16 @@ body.touch #world_props_foreground {
 .insect2 {
   image-rendering: pixelated;
   background-image: url('animations/insect2.gif');
+}
+
+/* festive */
+/* halloween */
+.pumpkin1 {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/props/festive_props/halloween/pumpkin1.gif');
+}
+
+.spider_web {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/props/festive_props/halloween/spider_web.gif');
 }
