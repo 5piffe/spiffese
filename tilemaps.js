@@ -36,7 +36,7 @@ const tileMap_walkable = [
   ['  '],
   ['Wv'],
   ['Wp'],
-  ['Ws', '  ', 'Wh'],
+  ['  ', '  ', 'Wh'],
   ['  ', '  ', 'Wv', 'Wh'],
   ['Wp', 'Bt', 'Bm', 'Bm', 'Br'],
 ];

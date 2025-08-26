@@ -12,7 +12,7 @@ body {
     padding: 0;
     background: var(--bg-color);
 
-background-image: linear-gradient(to bottom, var(--bg-col-gradientTop), var(--bg-col-gradientBottom)), url('images/bg_spiff.jpg');
+    background-image: linear-gradient(to bottom, var(--bg-col-gradientTop), var(--bg-col-gradientBottom)), url('images/bg_spiff.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -226,6 +226,7 @@ body.touch #squirrel-container{
     background-repeat: no-repeat;
     position: absolute;
     left: 0;
+
 }
 
 #world_walkable { 
@@ -310,62 +311,90 @@ body.touch #world_props_foreground {
 /* walkable */
 .brick_blue_topleft_corner {
   image-rendering: pixelated;
-  background-image: url('sprites/tiles/brickland/t_brick_blue_topleft_corner.gif');
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/brickland/t_brick_blue_topleft_corner.gif');  
+  background-blend-mode: multiply;
 }
 .brick_blue_topleft_edge {
   image-rendering: pixelated;
-  background-image: url('sprites/tiles/brickland/t_brick_blue_topleft_edge.gif');
+  linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/brickland/t_brick_blue_topleft_edge.gif');
+  background-blend-mode: multiply;
 }
 .brick_blue_topmid {
   image-rendering: pixelated;
-  background-image: url('sprites/tiles/brickland/t_brick_blue_topmid.gif');
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/brickland/t_brick_blue_topmid.gif');
+  background-blend-mode: multiply;
+
 }
 .brick_blue_topmid2 {
   image-rendering: pixelated;
-  background-image: url('sprites/tiles/brickland/t_brick_blue_topmid2.gif');
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/brickland/t_brick_blue_topmid2.gif');
+  background-blend-mode: multiply;
+
 }
 .brick_blue_topright_corner {
   image-rendering: pixelated;
-  background-image: url('sprites/tiles/brickland/t_brick_blue_topright_corner.gif');
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/brickland/t_brick_blue_topright_corner.gif');
+  background-blend-mode: multiply;
 }
 .brick_blue_topright_edge {
   image-rendering: pixelated;
-  background-image: url('sprites/tiles/brickland/t_brick_blue_topright_edge.gif');
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/brickland/t_brick_blue_topright_edge.gif');
+  background-blend-mode: multiply;
 }
 
 /* :: WOODEN STUFF :: */
 /* walkable */
 .wooden_box_vertical {
   image-rendering: pixelated;
-  background-image: url('sprites/tiles/woodenbox/t_wooden_box_vert.gif');
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/woodenbox/t_wooden_box_vert.gif');
+  background-blend-mode: multiply;
 }
 .wooden_box_horizontal {
   image-rendering: pixelated;
-  background-image: url('sprites/tiles/woodenbox/t_wooden_box_hor.gif');
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/woodenbox/t_wooden_box_hor.gif');
+  background-blend-mode: multiply;
 }
 .wooden_box_big32_vertical {
   image-rendering: pixelated;
-  background-image: url('sprites/tiles/woodenbox/t_wooden_box_big32_vert.gif');
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/woodenbox/t_wooden_box_big32_vert.gif');
+  background-blend-mode: multiply;
 }
 .wooden_plank {
   image-rendering: pixelated;
-  background-image: url('sprites/tiles/woodenbox/t_wooden_plank.gif');
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/woodenbox/t_wooden_plank.gif');
+  background-blend-mode: multiply;
 }
 
 /* decorations */
 .wooden_box_background_horizontal {
- image-rendering: pixelated;
- background-image: url('sprites/tiles/woodenbox/t_wooden_box_bg_hor.gif');
+  image-rendering: pixelated;
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/woodenbox/t_wooden_box_bg_hor.gif');
+  background-blend-mode: multiply;
 }
 
 .wooden_support_left {
   image-rendering: pixelated;
-   background-image: url('sprites/tiles/woodenbox/t_wooden_support_left.gif');
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/woodenbox/t_wooden_support_left.gif');
+  background-blend-mode: multiply;
 }
 
 .wooden_box_background_big32_horizontal {
- image-rendering: pixelated;
- background-image: url('sprites/tiles/woodenbox/t_wooden_box_big32_bg_hor.gif');
+  image-rendering: pixelated;
+  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
+  url('sprites/tiles/woodenbox/t_wooden_box_big32_bg_hor.gif');
+  background-blend-mode: multiply;
 }
 
 /* :: PROPS :: */
@@ -374,27 +403,32 @@ body.touch #world_props_foreground {
 .bottle_wine {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/props/p_wine.gif');
+
   z-index: 4;
 }
 
 .grass1 {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/props/p_grass1.gif');
+
 }
 
 .grass2 {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/props/p_grass2.gif');
+
 }
 
 .insect1 {
   image-rendering: pixelated;
   background-image: url('animations/insect1.gif');
+
 }
 
 .insect2 {
   image-rendering: pixelated;
   background-image: url('animations/insect2.gif');
+
 }
 
 /* festive */
@@ -402,6 +436,7 @@ body.touch #world_props_foreground {
 .pumpkin1 {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/props/festive_props/halloween/pumpkin1.gif');
+
 }
 
 .spider_web {
