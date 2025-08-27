@@ -69,9 +69,14 @@ const seasonalParticles = {
 
   /* Festive particles */
   halloween: {
-    image: "url('sprites/weatherparticles/blood_drop1.gif')",
-    minSpeed: 800,
-    maxSpeed: 3000,
+    images: [
+      "url('sprites/weatherparticles/blood_drop1.gif')",
+      "url('sprites/weatherparticles/blood_drop2.gif')",
+      "url('sprites/weatherparticles/blood_drop3.gif')",
+
+    ],
+    minSpeed: 900,
+    maxSpeed: 2000,
     minScale: 0.2,
     maxScale: 0.82,
     minRotationSpeed: 0,
@@ -80,11 +85,11 @@ const seasonalParticles = {
     maxOpacity: 0.5,
     minLifetime: 0.5,
     maxLifetime: 3,
-    creationfrequency: 50,
+    creationfrequency: 20,
   },
 };
 
-const MAX_PARTICLES = 30;
+const MAX_PARTICLES = 60;
 const container = document.getElementById("particle-container");
 
 function createParticle(/*season*/) {

@@ -1,6 +1,5 @@
 import { platformState } from './squirrel.js';
 
-//TODO: fix passable platform ability to fall through when holding down. (renderTileMap function update for theme-switching messed it up)
 export function isGrounded(squirrelRect, platforms, jumpDelta) {
   const pxThresholdY = 20;//15;
   const pxThresholdX = 10;
@@ -9,7 +8,9 @@ export function isGrounded(squirrelRect, platforms, jumpDelta) {
     if (
       platformState.ignoreGroundedPlatform &&
       platform.element === platformState.ignoreGroundedPlatform.element
-    ) { continue; }
+    ) {
+      return null;
+    }
 
     const overTop =
       squirrelRect.bottom >= platform.top &&

@@ -383,13 +383,6 @@ body.touch #world_props_foreground {
   background-blend-mode: multiply;
 }
 
-.wooden_support_left {
-  image-rendering: pixelated;
-  background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
-  url('sprites/tiles/woodenbox/t_wooden_support_left.gif');
-  background-blend-mode: multiply;
-}
-
 .wooden_box_background_big32_horizontal {
   image-rendering: pixelated;
   background-image: linear-gradient(to bottom, var(--bg-col-gradientTopTiles), var(--bg-col-gradientBottomTiles)),
@@ -442,4 +435,9 @@ body.touch #world_props_foreground {
 .spider_web {
   image-rendering: pixelated;
   background-image: url('sprites/tiles/props/festive_props/halloween/spider_web.gif');
+}
+
+.skeleton_hand {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/props/festive_props/halloween/skeleton_hand.gif');
 }

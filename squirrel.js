@@ -31,7 +31,7 @@ const groundLevel = 0;
 let fallThroughTimer = 0;
 let ignoreTimer = 0;
 const fallThroughTime = 0.2;
-const ignorePlatformDuration = 0.3;
+const ignorePlatformDuration = 0.2;
 export const platformState = {
   ignoreGroundedPlatform: null
 };
@@ -203,12 +203,12 @@ function updateSquirrelAnimation() {
   if (!isJumping) {
     if (GetKey(EDirection.RIGHT)) {
       facingRight = true;
-      squirrel.style.backgroundImage = !checkBorder() /*&& !isXBlocked*/ // fix positioning or anim for this
+      squirrel.style.backgroundImage = !checkBorder()
         ? `url('${GetSquirrelAnimation("RUN_RIGHT")}')`
         : `url('${GetSquirrelAnimation("BLOCKED_RIGHT")}')`;
     } else if (GetKey(EDirection.LEFT)) {
       facingRight = false;
-      squirrel.style.backgroundImage = !checkBorder() /*&& !isXBlocked*/
+      squirrel.style.backgroundImage = !checkBorder()
         ? `url('${GetSquirrelAnimation("RUN_LEFT")}')`
         : `url('${GetSquirrelAnimation("BLOCKED_LEFT")}')`;
     } else {
@@ -227,7 +227,7 @@ function checkBorder() {
   if (squirrelPosition < 2) {
     squirrelPosition = 2;
     return true;
-  } else if ((squirrelPosition + squirrel.offsetWidth) > (window.innerWidth - 22) /*&& GetKey(EDirection.RIGHT)*/) {
+  } else if ((squirrelPosition + squirrel.offsetWidth) > (window.innerWidth - 22)) {
     squirrelPosition = (window.innerWidth - 22) - squirrel.offsetWidth;
     return true;
   }

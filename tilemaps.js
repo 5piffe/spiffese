@@ -20,7 +20,6 @@
  * 'Wp' = Wooden plank
  *
  * - decorations -
- * 'Ws' = Wooden support left
  * 'Wb' = Wooden box background
  * 'WB' = Wooden box background big32
  *

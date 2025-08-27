@@ -39,12 +39,6 @@ const TILES = {
   },
 
   // decorations
-  "Ws": {
-    classes: ["wooden_support_left"],
-    offsetY: 14,
-    isForeGround: true,
-  },
-
   "Wb": {
     classes: ["wooden_box_background_horizontal"],
     isProp: true,
@@ -58,7 +52,12 @@ const TILES = {
   /* :: PROPS :: */
   // decorations
   "Bw": {
-    classes: ["bottle_wine"],
+    classes(season) {
+      if (season === "halloween") {
+        return ["skeleton_hand"];
+      }
+      return ["bottle_wine"];
+    },
     isProp: true,
     isForeGround: true,
     weight: 0.3,
