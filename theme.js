@@ -62,6 +62,7 @@ const squirrelAnimations = {
     FALL_RIGHT: "animations/squirrel/base/squirrel_fallright_base.gif",
 
   },
+  //TODO: Spring needs umbrella with rain. Autumn is using og spring animations instead
   spring: {
     RUN_LEFT: "animations/squirrel/spring/squirrel_runleft_spring.gif",
     RUN_RIGHT: "animations/squirrel/spring/squirrel_runright_spring.gif",
@@ -94,6 +95,22 @@ const squirrelAnimations = {
 
     FALL_LEFT: "animations/squirrel/summer/squirrel_fallleft_summer.gif",
     FALL_RIGHT: "animations/squirrel/summer/squirrel_fallright_summer.gif",
+  },
+  autumn: {
+    RUN_LEFT: "animations/squirrel/autumn/squirrel_runleft_autumn.gif",
+    RUN_RIGHT: "animations/squirrel/autumn/squirrel_runright_autumn.gif",
+
+    BLOCKED_LEFT: "animations/squirrel/autumn/squirrel_blockedleft_autumn.gif",
+    BLOCKED_RIGHT: "animations/squirrel/autumn/squirrel_blockedright_autumn.gif",
+
+    IDLE_LEFT: "animations/squirrel/autumn/squirrel_idleleft_autumn.gif",
+    IDLE_RIGHT: "animations/squirrel/autumn/squirrel_idleright_autumn.gif",
+
+    JUMP_LEFT: "animations/squirrel/autumn/squirrel_jumpleft_autumn.gif",
+    JUMP_RIGHT: "animations/squirrel/autumn/squirrel_jumpright_autumn.gif",
+
+    FALL_LEFT: "animations/squirrel/autumn/squirrel_fallleft_autumn.gif",
+    FALL_RIGHT: "animations/squirrel/autumn/squirrel_fallright_autumn.gif",
   },
 }
 
