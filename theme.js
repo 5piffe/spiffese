@@ -3,19 +3,15 @@ function setSeasonTheme(season) {
   document.body.classList.add(season);
   localStorage.setItem('season', season);
 
-  // TODO: Fix animation load or cache on manual theme-change need?
-  const animations = squirrelAnimations[season];
-  if (animations) {
-    Object.values(animations).forEach(src => {
+  Object.values(squirrelAnimations).forEach(season => {
+    Object.values(season).forEach(src => {
       const img = new Image();
       img.src = src;
     });
-  }
+  });
 
   if (typeof startParticles === "function") {
-
     startParticles();
-
   }
   renderTileMap(tileMap_walkable, tileSize, season);
 }
@@ -28,7 +24,7 @@ function autoDetectSeason() {
   const month = new Date().getMonth() + 1;
   const day = now.getDate();
 
-  // TODO: Calculate festive range from date for non-fixed holidays
+  // TODO: festive range from date for non-fixed holidays
   if ((month === 10 && day >= 25) || (month === 11 && day === 2)) {
     season = 'halloween';
     isFestive = true;
