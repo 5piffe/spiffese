@@ -17,9 +17,9 @@ const bodyContainer = appendDiv("body-container");
 const header = document.createElement("header");
 bodyContainer.appendChild(header);
 
-if (isTouchDevice) {
-  document.body.classList.add('touch');
-}
+// if (isTouchDevice) {
+//   document.body.classList.add('touch');
+// }
 const headerContainer = appendDiv("header-container", header);
 appendDiv("name", headerContainer).textContent = "Richard Nordström";
 appendDiv("header", headerContainer);

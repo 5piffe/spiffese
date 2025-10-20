@@ -1,5 +1,5 @@
 const squirrel = document.getElementById("squirrel");
-const TOUCH_BOTTOM_OFFSET = 80;
+// const TOUCH_BOTTOM_OFFSET = 80;
 let lastFrameTime = performance.now();
 let accumulatedTime = 0;
 const fixedDelta = 1 / 60;
@@ -42,8 +42,8 @@ function getPlatformRects() {
   return platformElements.map(el => {
     const rect = el.getBoundingClientRect();
     return {
-      top: isTouchDevice ? rect.top + TOUCH_BOTTOM_OFFSET : rect.top,
-      bottom: isTouchDevice ? rect.bottom + TOUCH_BOTTOM_OFFSET : rect.bottom,
+      top: /* isTouchDevice ? rect.top + TOUCH_BOTTOM_OFFSET : */ rect.top,
+      bottom: /* isTouchDevice ? rect.bottom + TOUCH_BOTTOM_OFFSET : */ rect.bottom,
       left: rect.left,
       right: rect.right,
       element: el,

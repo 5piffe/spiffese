@@ -214,9 +214,10 @@ a:hover {
     left: 0px;
     z-index: 3;
 }
-body.touch #squirrel-container{
-  bottom: 80px;
-}
+
+/* body.touch #squirrel-container{ */
+/*   bottom: 80px; */
+/* } */
 
 #squirrel {
     image-rendering: pixelated;
@@ -234,9 +235,10 @@ body.touch #squirrel-container{
   bottom: 0px;
   left: 0;
 }
-body.touch #world_walkable {
-  bottom: 80px;
-}
+
+/* body.touch #world_walkable { */
+/*   bottom: 80px; */
+/* } */
 
 #world_props_foreground {
   position: fixed;
@@ -244,39 +246,40 @@ body.touch #world_walkable {
   left: 0;
   z-index: 4;
 }
-body.touch #world_props_foreground {
-  bottom: 80px;
-}
+
+/* body.touch #world_props_foreground { */
+/*   bottom: 80px; */
+/* } */
 
 /* ==== TOUCH BUTTONS ====*/
-#touch-controls {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.8);
-  touch-action: none;
-}
+/* #touch-controls { */
+/*   position: fixed; */
+/*   bottom: 0; */
+/*   left: 0; */
+/*   width: 100%; */
+/*   height: 80px; */
+/*   display: flex; */
+/*   justify-content: space-between; */
+/*   z-index: 10; */
+/*   background: rgba(0, 0, 0, 0.8); */
+/*   touch-action: none; */
+/* } */
+/**/
+/* .touch-button { */
+/*   flex: 1; */
+/*   height: 100%; */
+/*   opacity: 0.65; */
+/*   background-repeat: no-repeat; */
+/*   background-position: center; */
+/*   background-size: contain; */
+/*   image-rendering: pixelated; */
+/*   border: 1px solid rgba(100, 200, 0, 0.2); */
+/* } */
 
-.touch-button {
-  flex: 1;
-  height: 100%;
-  opacity: 0.65;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  image-rendering: pixelated;
-  border: 1px solid rgba(100, 200, 0, 0.2);
-
-}
-#btn-w { background-image: url('sprites/touch_controls/btn_up.gif'); }
-#btn-a { background-image: url('sprites/touch_controls/btn_left.gif'); }
-#btn-s { background-image: url('sprites/touch_controls/btn_down.gif'); }
-#btn-d { background-image: url('sprites/touch_controls/btn_right.gif'); }
+/* #btn-w { background-image: url('sprites/touch_controls/btn_up.gif'); } */
+/* #btn-a { background-image: url('sprites/touch_controls/btn_left.gif'); } */
+/* #btn-s { background-image: url('sprites/touch_controls/btn_down.gif'); } */
+/* #btn-d { background-image: url('sprites/touch_controls/btn_right.gif'); } */
 
 #particle-container {
   position: fixed;
