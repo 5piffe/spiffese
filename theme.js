@@ -25,7 +25,7 @@ function autoDetectSeason() {
   const day = now.getDate();
 
   // TODO: festive range from date for non-fixed holidays
-  if ((month === 10 && day >= 25) || (month === 11 && day === 2)) {
+  if ((month === 10 && day >= 25) || (month === 11 && day <= 2)) {
     season = 'halloween';
     isFestive = true;
   }

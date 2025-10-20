@@ -427,6 +427,19 @@ a:hover {
 
 }
 
+/* winter */
+.snow_lantern_1 {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/props/winter/p_snow_lantern1.gif');
+
+}
+
+.ice_1 {
+  image-rendering: pixelated;
+  background-image: url('sprites/tiles/props/winter/p_ice_1.gif');
+
+}
+
 /* festive */
 /* halloween */
 .pumpkin1 {

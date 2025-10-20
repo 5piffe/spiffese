@@ -56,6 +56,9 @@ const TILES = {
       if (season === "halloween") {
         return ["skeleton_hand"];
       }
+      if (season === "winter") {
+        return ["snow_lantern_1"];
+      }
       return ["bottle_wine"];
     },
     isProp: true,
@@ -67,6 +70,9 @@ const TILES = {
       if (season === "halloween") {
         const props = ["pumpkin1", "spider_web"];
         return [props[Math.floor(Math.random() * props.length)]];
+      }
+      if (season === "winter") {
+        return ["ice_1"];
       }
       const props = ["grass1", "grass2"];
       return [props[Math.floor(Math.random() * props.length)]];
