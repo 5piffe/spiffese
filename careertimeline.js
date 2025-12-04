@@ -130,7 +130,7 @@ function startTimeline() {
     if (usedLines.includes(i)) {
       if (i === wl) {
         addJobTitle(stemWrapper,
-          "2024 – 20xx",
+          "2024 – 2025",
           "Walker Labs",
           "https://www.walkerlabs.com",
           "Audio Software Engineer",
