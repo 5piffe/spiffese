@@ -1,3 +1,54 @@
+const jobs = [
+  // {
+  //  years: "2026 – 20XX",
+  //  company: "TBA",
+  //  companyLink: "#",
+  //  title: "Audio Systems Engineer",
+  //  skills: ["Under NDA"],
+  //  projects: [{ name: "[Unannounced Project]", link: "#" }],
+  //  linesUsed: 6
+  //},
+  {
+    years: "2024 – 2025",
+    company: "Walker Labs",
+    companyLink: "#",
+    title: "Audio Software Engineer",
+    skills: ["Unreal", "Wwise", "C++"],
+    projects: [{ name: "[Alara Prime]", link: "https://playalara.com/" }],
+    linesUsed: 7
+  },
+  {
+    years: "2021 – 2024",
+    company: "Fall Damage",
+    companyLink: "#",
+    title: "Audio Programmer",
+    skills: ["Unreal", "FMOD", "Wwise", "Unity", "DSP", "C++", "C#"],
+    projects: [{ name: "[Alara Prime]", link: "https://playalara.com/" }],
+    linesUsed: 10
+  },
+  {
+    years: "2018 – 2021",
+    company: "(EDU) Futuregames",
+    companyLink: "https://futuregames.se/",
+    title: "Game Programmer",
+    skills: ["General game-coding", "Source control", "Game engines", "Dev-workflow"],
+    projects: [
+      { name: "[Unseen Cradle]", link: "https://www.youtube.com/watch?v=o8hcWOg34Vk" },
+      { name: "[Cargo Busta]", link: "https://www.youtube.com/watch?v=BE6aekXFxFQ" },
+      { name: "[SnowScape]", link: "https://www.youtube.com/watch?v=sRQCzghNx1Q" },
+      { name: "[In Between]", link: "https://www.youtube.com/watch?v=j4_2VheEmvU" }],
+    linesUsed: 11
+  },
+  {
+    years: "2009 – 2011",
+    company: "(EDU) SAE",
+    companyLink: "https://www.sae.edu/gbr/audio/",
+    title: "Audio Production Program",
+    skills: ["Live sound engineering", "Mixing/Mastering", "DAW workflow", "Engineering", "Electronics", "Production"],
+    linesUsed: 7
+  }
+];
+
 document.addEventListener("DOMContentLoaded", function () {
   const header = document.getElementById("header");
   const subtitle = document.getElementById("subtitle");
@@ -36,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const copyMessage = document.getElementById("copy-message");
 
     emailLink.addEventListener("click", function (event) {
-      event.preventDefault(); // don't fuck around with outlook  and stuff, simply copy the damn mail(!)
+      event.preventDefault();
       navigator.clipboard.writeText(email).then(function () {
         copyMessage.style.display = "block";
         copyMessage.style.opacity = 1;
@@ -92,14 +143,23 @@ function addJobTitle(stemWrapper, dateText, companyName, companyLink, jobTitle, 
 
   if (games && games.length > 0) {
     const gameContainer = document.createElement("div");
+
     games.forEach(game => {
-      const gameLinkElement = document.createElement("a");
-      gameLinkElement.href = game.link;
-      gameLinkElement.classList.add("game-link");
-      gameLinkElement.target = "_blank";
-      gameLinkElement.innerText = `${game.name}`;
-      gameContainer.appendChild(gameLinkElement);
-      gameContainer.appendChild(document.createElement("br"));
+      if (game.link && game.link !== "#") {
+        const gameLinkElement = document.createElement("a");
+        gameLinkElement.href = game.link;
+        gameLinkElement.classList.add("game-link");
+        gameLinkElement.target = "_blank";
+        gameLinkElement.innerText = `${game.name}`;
+        gameContainer.appendChild(gameLinkElement);
+        gameContainer.appendChild(document.createElement("br"));
+      } else {
+        // plain text
+        const span = document.createElement("span");
+        span.classList.add("game-link"); // reuse same styling
+        span.innerText = game.name;
+        gameContainer.appendChild(span);
+      }
     });
     writing.appendChild(gameContainer);
   }
@@ -111,93 +171,53 @@ function addJobTitle(stemWrapper, dateText, companyName, companyLink, jobTitle, 
 // Draw timeline
 function startTimeline() {
   const treeContainer = document.getElementById("tree-container");
-  const numLines = 34;
+  const numLines = 38; // total number of lines
+  let currentLine = 0;
+  const lineHeight = 21;
 
-  let wl = 2;
-  let fd = 8;
-  let fg = 17;
-  let sae = 26;
-  let usedLines = [wl, fd, fg, sae];
-
-  // Draw lines
-  for (let i = 0; i < numLines; i++) {
+  jobs.forEach((job) => {
     const stemWrapper = document.createElement("div");
     stemWrapper.classList.add("tree-stem-wrapper");
 
     const stem = document.createElement("div");
     stem.classList.add("tree-stem");
 
-    if (usedLines.includes(i)) {
-      if (i === wl) {
-        addJobTitle(stemWrapper,
-          "2024 – 2025",
-          "Walker Labs",
-          "https://www.walkerlabs.com",
-          "Audio Software Engineer",
-          ["Unreal", "Wwise", "C++"],
-          [
-            { name: "[Alara Prime]", link: "https://playalara.com/" }
-          ]
-        );
-      }
+    // set height of stem from linesUsed
+    stem.style.height = `${job.linesUsed * lineHeight}px`;
 
-      if (i === fd) {
-        addJobTitle(stemWrapper,
-          "2021 – 2024",
-          "Fall Damage",
-          "#",
-          "Audio Programmer",
-          ["Unreal", "FMOD", "Wwise", "Unity", "DSP", "C++", "C#"],
-          [
-            { name: "[Alara Prime]", link: "https://playalara.com/" }
-          ]
-        );
-      }
-
-      if (i === fg) {
-        addJobTitle(stemWrapper,
-          "2018 – 2021",
-          "(EDU) Futuregames",
-          "https://futuregames.se/",
-          "Game Programmer",
-          ["General game-coding", "Source control", "Game engines", "Dev-workflow"],
-          [
-            { name: "[Unseen Cradle]", link: "https://www.youtube.com/watch?v=o8hcWOg34Vk" },
-            { name: "[Cargo Busta]", link: "https://www.youtube.com/watch?v=BE6aekXFxFQ" },
-            { name: "[SnowScape]", link: "https://www.youtube.com/watch?v=sRQCzghNx1Q" },
-            { name: "[In Between]", link: "https://www.youtube.com/watch?v=j4_2VheEmvU" }
-          ]
-        );
-      }
-
-      if (i === sae) {
-        addJobTitle(stemWrapper,
-          "2009 – 2011",
-          "(EDU) SAE",
-          "https://www.sae.edu/gbr/audio/",
-          "Audio Production Program",
-          ["Live sound engineering", "Mixing/Mastering", "DAW workflow", "Engineering", "Electronics", "Production"]
-        );
-      }
-    }
+    addJobTitle(
+      stemWrapper,
+      job.years,
+      job.company,
+      job.companyLink,
+      job.title,
+      job.skills,
+      job.projects || []
+    );
 
     stemWrapper.appendChild(stem);
     treeContainer.appendChild(stemWrapper);
 
-    // Fade tree lines
-    setTimeout(function () {
-      stem.style.opacity = 1;
-    }, 30 * i);
+    setTimeout(() => { stem.style.opacity = 1; }, 30 * currentLine);
+    setTimeout(() => {
+      const date = stemWrapper.querySelector(".date");
+      const writing = stemWrapper.querySelector(".writing");
+      if (date) date.style.opacity = 1;
+      if (writing) writing.style.opacity = 1;
+    }, 40 * currentLine);
 
-    // Fade text
-    if (usedLines.includes(i)) {
-      setTimeout(function () {
-        const date = stemWrapper.querySelector(".date");
-        const writing = stemWrapper.querySelector(".writing");
-        if (date) date.style.opacity = 1;
-        if (writing) writing.style.opacity = 1;
-      }, 40 * i);
-    }
+    currentLine += job.linesUsed;
+  });
+
+  // remaining lines = empty stems
+  for (let i = currentLine; i < numLines; i++) {
+    const stemWrapper = document.createElement("div");
+    stemWrapper.classList.add("tree-stem-wrapper");
+    const stem = document.createElement("div");
+    stem.classList.add("tree-stem");
+    treeContainer.appendChild(stemWrapper);
+    stemWrapper.appendChild(stem);
+    setTimeout(() => { stem.style.opacity = 1; }, 30 * i);
   }
 }
 
