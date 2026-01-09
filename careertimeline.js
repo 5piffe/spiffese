@@ -1,13 +1,13 @@
 const jobs = [
-  // {
-  //  years: "2026 – 20XX",
-  //  company: "TBA",
-  //  companyLink: "#",
-  //  title: "Audio Systems Engineer",
-  //  skills: ["Under NDA"],
-  //  projects: [{ name: "[Unannounced Project]", link: "#" }],
-  //  linesUsed: 6
-  //},
+  {
+    years: "2026 – 20XX",
+    company: "TTK Games",
+    companyLink: "https://ttkgames.com/",
+    title: "Audio Systems Engineer",
+    skills: ["Under NDA"],
+    projects: [{ name: "[Unannounced Project]", link: "#" }],
+    linesUsed: 6
+  },
   {
     years: "2024 – 2025",
     company: "Walker Labs",
