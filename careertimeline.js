@@ -9,7 +9,7 @@ const jobs = [
     linesUsed: 6
   },
   {
-    years: "2024 – 2025",
+    years: "2024 – 2026",
     company: "Walker Labs",
     companyLink: "#",
     title: "Audio Software Engineer",
