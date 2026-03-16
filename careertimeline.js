@@ -31,7 +31,7 @@ const jobs = [
     company: "(EDU) Futuregames",
     companyLink: "https://futuregames.se/",
     title: "Game Programmer",
-    skills: ["General game-coding", "Source control", "Game engines", "Dev-workflow"],
+    skills: ["Dev-workflow", "Game engines", "Source control", "General game-coding"],
     projects: [
       { name: "[Unseen Cradle]", link: "https://www.youtube.com/watch?v=o8hcWOg34Vk" },
       { name: "[Cargo Busta]", link: "https://www.youtube.com/watch?v=BE6aekXFxFQ" },
@@ -44,7 +44,7 @@ const jobs = [
     company: "(EDU) SAE",
     companyLink: "https://www.sae.edu/gbr/audio/",
     title: "Audio Production Program",
-    skills: ["Live sound engineering", "Mixing/Mastering", "DAW workflow", "Engineering", "Electronics", "Production"],
+    skills: ["Acoustics", "Production", "Electronics", "Engineering", "Daw Workflow", "Mixing/Mastering", "Live sound engineering"],
     linesUsed: 7
   }
 ];
