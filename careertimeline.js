@@ -31,7 +31,7 @@ const jobs = [
     company: "(EDU) Futuregames",
     companyLink: "https://futuregames.se/",
     title: "Game Programmer",
-    skills: ["Dev-workflow", "Game engines", "Source control", "General game-coding"],
+    skills: ["Dev-workflow", "Source control", "Game engines", "General game-coding"],
     projects: [
       { name: "[Unseen Cradle]", link: "https://www.youtube.com/watch?v=o8hcWOg34Vk" },
       { name: "[Cargo Busta]", link: "https://www.youtube.com/watch?v=BE6aekXFxFQ" },
