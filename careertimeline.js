@@ -44,7 +44,7 @@ const jobs = [
     company: "(EDU) SAE",
     companyLink: "https://www.sae.edu/gbr/audio/",
     title: "Audio Production Program",
-    skills: ["Acoustics", "Production", "Electronics", "Engineering", "Daw Workflow", "Mixing/Mastering", "Live sound engineering"],
+    skills: ["Acoustics", "Production", "Electronics", "Engineering", "Daw-workflow", "Mixing/Mastering", "Live sound engineering"],
     linesUsed: 7
   }
 ];
