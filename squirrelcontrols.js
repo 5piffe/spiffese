@@ -89,3 +89,17 @@ function GetKey(direction) {
   return keyState[direction]; // || touchState[direction];
 }
 
+document.addEventListener("keydown", (event) => {
+  if (["w", "a", "s", "d"].includes(event.key.toLowerCase())) {
+    const movementHint = document.getElementById("wasd_hint");
+
+    if (movementHint) {
+      movementHint.style.opacity = "0";
+
+      setTimeout(() => {
+        movementHint.style.display = "none";
+      }, 500);
+    }
+  }
+});
+

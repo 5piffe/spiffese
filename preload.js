@@ -31,8 +31,15 @@ appendDiv("contact", header).innerHTML = `
 appendDiv("copy-message", header).textContent = "ctrl+c spiffe84@gmail.com";
 
 appendDiv("tree-container", bodyContainer);
+
 appendDiv("squirrel-container", bodyContainer);
 appendDiv("squirrel", document.getElementById("squirrel-container"));
+
+const movementHint = document.createElement("img");
+movementHint.id = "wasd_hint";
+movementHint.src = "animations/keycaps/wasd.gif";
+document.getElementById("squirrel-container").appendChild(movementHint);
+
 appendDiv("world_walkable", bodyContainer);
 appendDiv("world_props_foreground", bodyContainer);
 
